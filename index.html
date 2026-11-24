@@ -1,0 +1,1928 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NIFASIA — Nifas, ASI, dan keluarga berencana dalam satu platform edukasi.</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: sticky header with a scrolling tab strip, one readable column (max 60rem), cards only for forms and results. */
+:root{
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --font-d:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --font-b:'Nunito Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+  --bg:#FFFAE8; --surface:#FFFFFF; --surface2:#FFF1F5; --fg:#3B2332; --muted:#6B4F5F; --line:#F1D4DF;
+  --accent:#A8326A; --accent-fg:#FFFFFF; --accent-soft:#FFDCE8;
+  --top:#FFF0B8; --pink-soft:#FFDCE8; --sun-soft:#FFF0B8;
+  --c1:#1E7A4A; --c1bg:#DDF1E5; --c2:#1F6F9E; --c2bg:#DCEBF6; --c3:#955700; --c3bg:#FBEBCF; --c4:#A82B2B; --c4bg:#F8DEDC; --cx:#5B6F72; --cxbg:#E4EBEC;
+  --onc:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2A1822; --surface:#38232F; --surface2:#432B38; --fg:#FCEAF1; --muted:#D3B3C2; --line:#5B3A4B;
+    --accent:#FF8FB8; --accent-fg:#3A0F22; --accent-soft:#5A2A3E;
+    --top:#3F2833; --pink-soft:#4F2A3D; --sun-soft:#4D3E1E;
+    --c1:#5FCB8E; --c1bg:#173626; --c2:#6DB8E8; --c2bg:#173048; --c3:#E8B35A; --c3bg:#3A2D10; --c4:#F08A84; --c4bg:#40201F; --cx:#8EA5A8; --cxbg:#223335;
+    --onc:#0C1819; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2A1822; --surface:#38232F; --surface2:#432B38; --fg:#FCEAF1; --muted:#D3B3C2; --line:#5B3A4B;
+  --accent:#FF8FB8; --accent-fg:#3A0F22; --accent-soft:#5A2A3E;
+  --top:#3F2833; --pink-soft:#4F2A3D; --sun-soft:#4D3E1E;
+  --c1:#5FCB8E; --c1bg:#173626; --c2:#6DB8E8; --c2bg:#173048; --c3:#E8B35A; --c3bg:#3A2D10; --c4:#F08A84; --c4bg:#40201F; --cx:#8EA5A8; --cxbg:#223335;
+  --onc:#0C1819; color-scheme:dark;
+}
+[hidden]:not([hidden=until-found i]){display:none!important}
+html{font-size:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+html[data-fs="1"]{font-size:112.5%}
+html[data-fs="2"]{font-size:125%}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-b);font-size:1rem;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--top);z-index:30}
+h1,h2,h3{font-family:var(--font-d);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:1.6rem}
+h3{font-size:1.15rem}
+p{margin:0}
+a{color:var(--accent)}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:60rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header & branding nifasia */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--top);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding-block:.65rem .35rem}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--fg);min-width:0;flex:1}
+.brand svg{flex:none}
+.brand-txt{display:flex;flex-direction:column;min-width:0;gap:.05rem}
+.brand-name{font-family:var(--font-d);font-weight:800;font-size:1.45rem;line-height:1.05;color:var(--accent);letter-spacing:-.02em}
+.brand-sub{font-size:.78rem;line-height:1.25;color:var(--muted);font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:30rem){
+  .brand-name{font-size:1.25rem}
+  .brand-sub{font-size:.72rem}
+}
+.top-tools{display:flex;align-items:center;gap:.4rem;flex:none}
+.fs{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;min-height:2.4rem;padding:0 .7rem;font:inherit;font-weight:700;cursor:pointer}
+.fs:hover{border-color:var(--accent)}
+.tabs{display:flex;gap:.1rem;overflow-x:auto;scrollbar-width:thin}
+.tabs a{flex:none;padding:.6rem .85rem;color:var(--muted);text-decoration:none;font-weight:700;border-bottom:3px solid transparent;white-space:nowrap;font-size:.95rem}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabs a.tab-owner{margin-left:auto;display:inline-flex;align-items:center;gap:.35rem}
+
+main{padding-block:1.5rem 3rem}
+.page{display:flex;flex-direction:column;gap:1.75rem}
+.page-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1.25rem;align-items:center;padding:1.1rem 1.25rem;border-radius:18px;background:linear-gradient(120deg,var(--pink-soft),var(--sun-soft))}
+.page-head > *{grid-column:1}
+.page-head > .ph-art{grid-column:2;grid-row:1 / span 5;width:5.5rem}
+.ph-art svg{width:100%;height:auto;display:block}
+@media (max-width:34rem){.page-head > .ph-art{width:3.75rem}}
+.page-head p{color:var(--muted);max-width:42rem}
+.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1.25rem 2rem;align-items:center;padding:1.75rem;border-radius:24px;background:linear-gradient(135deg,var(--pink-soft) 0%,var(--sun-soft) 100%)}
+.hero-t{display:flex;flex-direction:column;gap:.95rem;min-width:0}
+.hero-brand-box{display:flex;flex-direction:column;gap:.2rem;padding-bottom:.65rem;border-bottom:1.5px dashed var(--line)}
+.hero-brand-title{font-family:var(--font-d);font-weight:800;font-size:clamp(2.2rem,6vw,3.1rem);line-height:1;color:var(--accent);letter-spacing:-.03em}
+.hero-brand-tag{font-family:var(--font-d);font-weight:700;font-size:1.05rem;color:var(--fg);line-height:1.3}
+.hero-art svg{width:100%;height:auto;max-width:22rem;display:block;margin:0 auto}
+@media (max-width:46rem){.hero{grid-template-columns:minmax(0,1fr);padding:1.25rem}.hero-art{order:-1;max-width:14rem;margin:0 auto}}
+.fact .ico{display:block;width:2.8rem;height:2.8rem;margin-bottom:.5rem}
+.ico svg,.mi{width:100%;height:100%;display:block}
+.mtab .mi{width:2.4rem;height:2.4rem;flex:none}
+.mdet header .mi.lg{width:4.25rem;height:4.25rem}
+.rt{display:flex;gap:.6rem;align-items:center}
+.rt .mi{width:2.4rem;height:2.4rem;flex:none}
+.hero h1{font-size:clamp(1.55rem,4.5vw,2.25rem)}
+.hero .lead{font-size:1.05rem;max-width:40rem;color:var(--muted)}
+.ctas{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:2.75rem;padding:.5rem 1.1rem;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);font:inherit;font-weight:800;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.small{min-height:2.25rem;padding:.25rem .75rem;font-size:.9rem}
+.btn.danger{background:var(--c4);border-color:var(--c4);color:var(--onc)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* blocks */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;min-width:0}
+.card > h2,.card > h3{margin-bottom:-.25rem}
+.sub{color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:1rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1.25rem 1.5rem}
+.fact h3{margin-bottom:.25rem}
+.fact p{color:var(--muted)}
+.flow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.flow li{display:grid;grid-template-columns:2.25rem 1fr auto;gap:.25rem 1rem;align-items:start;padding:.9rem 0;border-top:1px solid var(--line)}
+.flow li:first-child{border-top:0}
+.flow .n{font-family:var(--font-d);font-weight:700;font-size:1.3rem;color:var(--accent);line-height:1.2}
+.flow strong{display:block}
+.flow span.d{color:var(--muted);font-size:.95rem}
+.flow a.go{font-weight:800;white-space:nowrap}
+@media (max-width:30rem){.flow li{grid-template-columns:2rem 1fr}.flow a.go{grid-column:2}}
+.notice{border:1px solid var(--line);background:var(--surface2);border-radius:10px;padding:.9rem 1rem;color:var(--fg);font-size:.95rem}
+.alert{border:1px solid var(--c4);background:var(--c4bg);color:var(--fg);border-radius:10px;padding:.9rem 1rem}
+.alert strong{color:var(--c4)}
+.alert.warn{border-color:var(--c3);background:var(--c3bg)}
+.alert.warn strong{color:var(--c3)}
+.alert.ok{border-color:var(--c1);background:var(--c1bg)}
+.alert.ok strong{color:var(--c1)}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5rem),1fr));gap:.5rem}
+.tl > div{border:1px solid var(--line);border-radius:10px;padding:.7rem .8rem;background:var(--surface);display:flex;flex-direction:column;gap:.25rem;position:relative}
+.tl b{font-family:var(--font-d);font-size:1rem}
+.tl span{font-size:.88rem;color:var(--muted)}
+.tl .here{border-color:var(--accent);background:var(--accent-soft)}
+.tl .here span{color:var(--fg)}
+.tl em{font-style:normal;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+
+/* forms */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:1rem}
+.fld{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.fld > label,.fld > .lbl,legend{font-weight:800;font-size:.95rem}
+legend{padding:0;margin-bottom:.4rem}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+input[type=text],input[type=password],input[type=number],input[type=date],select,textarea{width:100%;min-height:2.75rem;padding:.5rem .7rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit}
+textarea{min-height:5rem;resize:vertical}
+.hint{color:var(--muted);font-size:.85rem}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opts.col{flex-direction:column}
+.opt{display:flex;align-items:center;gap:.55rem;border:1px solid var(--line);border-radius:8px;padding:.5rem .75rem;background:var(--surface);cursor:pointer;min-height:2.75rem;min-width:0}
+.opt input{flex:none;width:1.15rem;height:1.15rem;accent-color:var(--accent)}
+.opt span{min-width:0}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt:has(input:disabled){cursor:default}
+.dur{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+output.big{display:block;min-height:2.75rem;padding:.55rem .7rem;border:1px dashed var(--line);border-radius:8px;font-weight:800}
+.refill{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;justify-content:space-between}
+.reg-sum{display:flex;flex-direction:column}
+.stepnav{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px;padding:.12rem .65rem;font-size:.82rem;font-weight:800;border:1px solid currentColor;white-space:nowrap}
+.chip.c1{color:var(--c1);background:var(--c1bg)}
+.chip.c2{color:var(--c2);background:var(--c2bg)}
+.chip.c3{color:var(--c3);background:var(--c3bg)}
+.chip.c4{color:var(--c4);background:var(--c4bg)}
+.chip.cx{color:var(--cx);background:var(--cxbg)}
+.tag{display:inline-block;border-radius:6px;padding:.05rem .5rem;font-size:.8rem;font-weight:700;background:var(--surface2);color:var(--muted)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.6rem}
+.legend div{display:flex;flex-direction:column;gap:.3rem;font-size:.92rem;color:var(--muted)}
+
+/* wheel */
+.wheel{width:100%;max-width:23rem;margin:0 auto;display:block}
+.wheel .wd{stroke:var(--surface);stroke-width:2}
+.wd.c1{fill:var(--c1)}.wd.c2{fill:var(--c2)}.wd.c3{fill:var(--c3)}.wd.c4{fill:var(--c4)}.wd.cx{fill:var(--cx)}
+.wheel text{fill:var(--onc);font-family:var(--font-b);text-anchor:middle}
+.wheel .cc{fill:var(--surface);stroke:var(--line);stroke-width:1}
+.wheel .ct{fill:var(--muted)}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:34rem}
+th,td{text-align:left;vertical-align:top;padding:.7rem .8rem;border-bottom:1px solid var(--line)}
+th{font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface2)}
+tr:last-child td{border-bottom:0}
+td ul{margin:0;padding-left:1.1rem}
+td ul li{margin:.1rem 0}
+.tw.wide table{min-width:46rem}
+
+/* method page */
+.mtabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9.5rem),1fr));gap:.5rem}
+.mtab{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:.65rem .75rem;font:inherit;cursor:pointer;min-height:3.5rem}
+.mtab b{font-weight:800;font-size:.95rem;line-height:1.25}
+.mtab[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.mdet{display:flex;flex-direction:column;gap:1.25rem}
+.mdet header{display:flex;flex-direction:column;gap:.4rem}
+.mdet header .row{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.dl{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.9rem 1.5rem}
+.dl dt{font-weight:800;color:var(--accent)}
+.dl dd{margin:0}
+@media (max-width:40rem){.dl{grid-template-columns:minmax(0,1fr);gap:.2rem}.dl dd{margin-bottom:.8rem}}
+.pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:1rem}
+.pc h3{margin-bottom:.4rem}
+ul.l{margin:0;padding-left:1.15rem}
+ul.l li{margin:.2rem 0}
+.box{border:1px solid var(--line);border-radius:10px;padding:1rem;background:var(--surface2)}
+.box h3{margin-bottom:.5rem}
+
+/* recommendation cards */
+.recs{display:flex;flex-direction:column;gap:.75rem}
+.rec{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;align-items:center;border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;background:var(--surface)}
+.rec.sel{border-color:var(--accent);background:var(--accent-soft)}
+.rec h3{font-size:1.05rem}
+.rec .meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.rec p{color:var(--muted);font-size:.93rem;margin-top:.3rem}
+@media (max-width:30rem){.rec{grid-template-columns:minmax(0,1fr)}}
+.grp-h{font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:.5rem}
+
+/* quiz */
+.q{border:1px solid var(--line);border-radius:10px;padding:1rem;background:var(--surface)}
+.q legend{display:flex;gap:.6rem;align-items:flex-start;float:none;width:100%;padding:0;margin-bottom:.7rem;font-weight:700;font-size:1rem}
+.q .qn{flex:none;font-family:var(--font-d);color:var(--accent);font-weight:700}
+.q.ok{border-color:var(--c1)}.q.bad{border-color:var(--c4)}
+.exp{margin-top:.7rem;font-size:.93rem;color:var(--muted)}
+.score{font-family:var(--font-d);font-size:2rem;font-weight:700}
+
+/* summary / history / owner dashboard */
+.sum{display:flex;flex-direction:column;gap:1rem}
+.sum h3{font-size:1rem;color:var(--accent);margin-bottom:.25rem}
+.sum ul{margin:0;padding-left:1.1rem}
+.sum li{margin:.15rem 0}
+.hist{display:flex;flex-direction:column;gap:.6rem}
+.hi{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.hi summary{cursor:pointer;padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.3rem 1rem;justify-content:space-between;font-weight:700}
+.hi summary span{font-weight:400;color:var(--muted)}
+.hi .in{padding:0 1rem 1rem;display:flex;flex-direction:column;gap:.8rem}
+.row-btns{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:.8rem}
+.stat-box{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.2rem}
+.stat-box .num{font-family:var(--font-d);font-size:1.85rem;font-weight:800;color:var(--accent);line-height:1.1}
+.stat-box .lbl{font-size:.85rem;font-weight:700;color:var(--muted)}
+.bar-row{display:flex;flex-direction:column;gap:.25rem;margin-bottom:.5rem}
+.bar-lbl{display:flex;justify-content:space-between;font-size:.88rem;font-weight:700}
+.bar-track{height:.55rem;background:var(--surface2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .3s ease}
+.sync-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:700;padding:.2rem .65rem;border-radius:99px;background:var(--c1bg);color:var(--c1)}
+.sync-badge.local{background:var(--c3bg);color:var(--c3)}
+
+/* revisi: rekomendasi & highlight */
+.card.hl{border:2px solid var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--surface) 7rem)}
+.rec.top{grid-template-columns:minmax(0,1fr);border:3px solid var(--accent);background:linear-gradient(135deg,var(--accent-soft),var(--sun-soft));padding:1.1rem 1.15rem;box-shadow:0 4px 18px rgba(168,50,106,.2);gap:.8rem}
+.rec.top .rt h3{font-size:1.3rem}
+.rec.alt{border-left:5px solid var(--line)}
+.rec.no{opacity:.85}
+.badge-top{display:inline-flex;align-items:center;gap:.35rem;justify-self:start;background:var(--accent);color:var(--accent-fg);border-radius:999px;padding:.2rem .85rem;font-size:.82rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.badge-alt{display:inline-flex;align-items:center;border-radius:999px;padding:.1rem .65rem;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--surface2);color:var(--muted);border:1px solid var(--line);margin-bottom:.35rem}
+.why-box{background:var(--surface);border:1px solid var(--accent);border-radius:10px;padding:.8rem 1rem}
+.why-box h4{margin:0 0 .35rem;font-family:var(--font-d);color:var(--accent);font-size:1rem}
+.why-box ul{margin:0;padding-left:1.1rem}
+.why-box li{margin:.2rem 0}
+.lock-note{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between}
+.fl li{list-style:none;margin:.35rem 0}
+ul.fl{padding-left:0}
+.rec.top{padding:.85rem 1rem;gap:.6rem}
+.rec-bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.rec-x{border:1px solid var(--accent);background:var(--surface);color:var(--accent);border-radius:8px;min-height:2.25rem;padding:0 .75rem;font:inherit;font-weight:800;font-size:.9rem;cursor:pointer}
+.rec-x:hover{background:var(--accent-soft)}
+.rec-mini{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;justify-content:space-between;border:2px solid var(--accent);border-radius:10px;padding:.6rem .9rem;background:var(--accent-soft)}
+details.why-det{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:.2rem .8rem}
+details.why-det summary{cursor:pointer;font-weight:800;color:var(--accent);padding:.55rem 0;min-height:2.5rem}
+details.why-det[open] summary{border-bottom:1px solid var(--line);margin-bottom:.6rem}
+details.why-det .why-box{margin-bottom:.6rem}
+footer{border-top:1px solid var(--line);padding-block:1.5rem 2rem;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-direction:column;gap:.5rem}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(1rem + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:.6rem 1rem;border-radius:8px;font-weight:700;z-index:40;max-width:calc(100% - 2rem);text-align:center}
+#toast[hidden]{display:none}
+/* revisi v5 */
+fieldset .hint{display:block;margin:-.2rem 0 .5rem}
+.fld .hint{display:block}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:.9rem;align-items:start}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.35rem;position:relative;overflow:hidden}
+.sec::after{content:"";position:absolute;right:-1.3rem;top:-1.3rem;width:4.2rem;height:4.2rem;border-radius:50%;background:var(--sun-soft);opacity:.8}
+.sec-h{display:flex;align-items:center;gap:.6rem;position:relative;z-index:1;padding-bottom:.55rem;margin-bottom:.15rem;border-bottom:1.5px dashed var(--line)}
+.sec-i{flex:none;width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center;background:var(--pink-soft);font-size:1.1rem;line-height:1}
+.sec-h h3{margin:0}
+.kv{display:flex;flex-direction:column;gap:.05rem;padding:.4rem 0;border-bottom:1px dotted var(--line)}
+.kv:last-child{border-bottom:0}
+.kv .k{font-size:.76rem;font-weight:800;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.kv .v{font-weight:600;overflow-wrap:anywhere}
+.kv.chiprow{flex-direction:row;align-items:center;justify-content:space-between;gap:.6rem}
+.kv.chiprow .k{font-size:.9rem;letter-spacing:0;color:var(--fg);text-transform:none;font-weight:700}
+.sum-hero{grid-column:1/-1;position:relative;overflow:hidden;border-radius:18px;padding:1.1rem 1.25rem;background:linear-gradient(120deg,var(--pink-soft),var(--sun-soft));border:1px solid var(--line);display:flex;flex-direction:column;gap:.65rem}
+.sum-hero .orn{position:absolute;right:.4rem;top:.2rem;width:6.5rem;height:auto;pointer-events:none}
+.sum-hero .tt{position:relative;z-index:1;padding-right:5.5rem;display:flex;flex-direction:column;gap:.2rem}
+.sum-hero h3{font-size:1.5rem;color:var(--fg);margin:0}
+.sum-chips{display:flex;flex-wrap:wrap;gap:.4rem;position:relative;z-index:1}
+.sum-pick{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:.6rem .8rem;position:relative;z-index:1}
+.sum-pick .mi{width:2.8rem;height:2.8rem;flex:none}
+.sum-pick small{display:block;color:var(--muted);font-weight:700;font-size:.78rem}
+.sum-pick strong{font-family:var(--font-d);font-size:1.15rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-in">
+      <a class="brand" href="#beranda" aria-label="NIFASIA — Nifas, ASI, dan keluarga berencana dalam satu platform edukasi.">
+        <svg width="34" height="34" viewBox="0 0 34 34" role="img" aria-hidden="true">
+          <circle cx="13" cy="17" r="10.5" fill="var(--accent)"/>
+          <circle cx="24" cy="21" r="7" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.75"/>
+          <path d="M13 13c2.5 0 4.5 2 4.5 4.5S15.5 22 13 22s-4.5-2-4.5-4.5S10.5 13 13 13z" fill="var(--accent-soft)" opacity=".45"/>
+        </svg>
+        <div class="brand-txt">
+          <span class="brand-name">NIFASIA</span>
+          <span class="brand-sub">Nifas, ASI, dan keluarga berencana dalam satu platform edukasi.</span>
+        </div>
+      </a>
+      <div class="top-tools">
+        <button class="fs" id="fs" type="button" aria-label="Ganti ukuran huruf">Aa</button>
+      </div>
+    </div>
+    <nav class="tabs" id="nav" aria-label="Menu utama">
+      <a href="#beranda" data-p="beranda">Beranda</a>
+      <a href="#pengkajian" data-p="pengkajian">Pengkajian Ibu</a>
+      <a href="#metode" data-p="metode">Pelajari Metode KB</a>
+      <a href="#skrining" data-p="skrining">Skrining KB</a>
+      <a href="#konseling" data-p="konseling">Konseling KB</a>
+      <a href="#evaluasi" data-p="evaluasi">Evaluasi</a>
+      <a href="#pemilik" data-p="pemilik" class="tab-owner">🔒 Dashboard Pemilik</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- BERANDA -->
+<section class="page" id="p-beranda" hidden>
+  <div class="hero">
+    <div class="hero-t">
+      <div class="hero-brand-box">
+        <span class="hero-brand-title">NIFASIA</span>
+        <span class="hero-brand-tag">Nifas, ASI, dan keluarga berencana dalam satu platform edukasi.</span>
+      </div>
+      <span class="eyebrow">Keluarga berencana pascasalin</span>
+      <h1>Memilih KB yang aman setelah melahirkan dan selama menyusui</h1>
+      <p class="lead">Isi data kesehatan Ibu, lihat metode KB yang sesuai dengan kondisi Ibu, lalu pilih metode yang Ibu inginkan.</p>
+      <div class="ctas">
+        <a class="btn" href="#pengkajian">Mulai pengkajian</a>
+        <a class="btn ghost" href="#metode">Pelajari 7 metode KB</a>
+      </div>
+    </div>
+    <div class="hero-art" id="hero-art" role="img" aria-label="Ilustrasi seorang ibu menggendong bayinya"></div>
+  </div>
+
+  <div class="notice">
+    <strong>Catatan Penggunaan.</strong> NIFASIA membantu Ibu mengenali pilihan metode kontrasepsi yang sesuai dengan kondisi dan kebutuhan Ibu. Hasil yang diperoleh dapat digunakan sebagai panduan awal untuk berkonsultasi lebih lanjut dengan bidan atau dokter terdekat.
+  </div>
+</section>
+
+<!-- PENGKAJIAN -->
+<section class="page" id="p-pengkajian" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Menu 2</span>
+    <h2>Pengkajian Ibu</h2>
+    <p>Registrasi cukup diisi satu kali. Setelah itu isi pengkajian dari atas ke bawah. Hanya lama sejak persalinan dan status ASI yang wajib.</p>
+    <div class="ctas"><button class="btn ghost small" type="button" data-act="sample">Isi contoh data</button></div>
+  </div>
+  <div id="reg-box" class="page"></div>
+  <div id="pengkajian-body" class="page" hidden>
+    <div id="refill-box" class="notice refill"></div>
+    <div id="form-pengkajian" class="page"></div>
+    <div class="stepnav">
+      <a class="btn ghost" href="#beranda">Kembali</a>
+      <button class="btn" type="button" data-act="hasil">Hasil Pengkajian Ibu</button>
+    </div>
+  </div>
+</section>
+
+<!-- METODE -->
+<section class="page" id="p-metode" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Menu 3</span>
+    <h2>Pelajari Metode KB</h2>
+    <p>Tujuh metode yang relevan pada masa nifas dan menyusui. Buka tiap metode untuk melihat penjelasannya. Halaman ini hanya untuk pengenalan; pemilihan metode dilakukan pada menu Konseling KB.</p>
+  </div>
+  <div class="mtabs" id="mtabs" role="tablist" aria-label="Metode kontrasepsi"></div>
+  <div class="card mdet" id="mdet" role="tabpanel"></div>
+</section>
+
+<!-- SKRINING -->
+<section class="page" id="p-skrining" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Menu 4</span>
+    <h2>Skrining Kelayakan Medis</h2>
+    <p>Penilaian kesesuaian seluruh metode KB dengan kondisi ibu, mengacu pada kriteria kelayakan medis WHO (MEC) untuk usia pascasalin, status menyusui, dan riwayat penyakit. Kategori 1 sampai 4. Pemilihan metode dilakukan pada menu Konseling KB.</p>
+  </div>
+  <div id="skr" class="page"></div>
+</section>
+
+<!-- KONSELING -->
+<section class="page" id="p-konseling" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Menu 5</span>
+    <h2>Konseling KB</h2>
+    <p>Isi kebutuhan Ibu pada bagian A, lihat rekomendasi pada bagian B, lalu pilih satu metode.</p>
+  </div>
+
+  <div class="card">
+    <h2>A. Kebutuhan dan preferensi</h2>
+    <p class="sub">Isi sesuai keinginan Ibu. Bagian ini tidak wajib.</p>
+    <div id="form-pref" class="page"></div>
+  </div>
+
+  <div class="card hl">
+    <h2>B. Rekomendasi metode KB untuk Ibu</h2>
+    <div id="rek"></div>
+  </div>
+
+  <div class="stepnav">
+    <a class="btn ghost" href="#skrining">Skrining KB</a>
+    <a class="btn" href="#evaluasi">Lanjut ke evaluasi</a>
+  </div>
+</section>
+
+<!-- EVALUASI -->
+<section class="page" id="p-evaluasi" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Menu 6</span>
+    <h2>Evaluasi &amp; Kirim Hasil</h2>
+    <p>Tulis pertanyaan bila ada, isi kesan dan pesan, lalu kirim hasil konseling Ibu.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pertanyaan Ibu</h2>
+    <p class="sub">Bila ada yang ingin ditanyakan, tulis di sini lalu tekan Kirim. Jawabannya akan muncul di bawah.</p>
+    <div class="fld"><label for="qa-input">Pertanyaan Ibu</label><textarea id="qa-input" placeholder="Contoh: Apakah suntik KB membuat ASI berkurang?"></textarea><small class="hint">Untuk keadaan darurat, langsung ke fasilitas kesehatan.</small></div>
+    <div class="row-btns"><button class="btn" type="button" data-act="qaask">Kirim pertanyaan</button></div>
+    <p class="hint" id="qa-note"></p>
+    <div id="qa-log" class="recs"></div>
+  </div>
+
+  <div class="card">
+    <h2>Kesan dan pesan untuk bidan</h2>
+    <p class="sub">Boleh dikosongkan. Cukup tulis singkat.</p>
+    <div class="fld"><label for="f-bidan">Nama bidan (opsional)</label><input id="f-bidan" type="text" data-k="bidan" autocomplete="off"><small class="hint">Bidan yang melayani Ibu.</small></div>
+    <div class="fld"><label for="f-kesan">Kesan Ibu</label><textarea id="f-kesan" data-k="kesan" placeholder="Misalnya: penjelasan mudah dipahami dan membuat nyaman"></textarea><small class="hint">Bagaimana pengalaman Ibu menggunakan layanan ini?</small></div>
+    <div class="fld"><label for="f-saran">Pesan untuk bidan</label><textarea id="f-saran" data-k="saran" placeholder="Saran atau pesan untuk bidan"></textarea><small class="hint">Saran perbaikan atau ucapan untuk bidan.</small></div>
+  </div>
+
+  <div class="card">
+    <div class="row-btns" style="justify-content:space-between">
+      <h2>Ringkasan hasil konseling</h2>
+      <span id="cloud-status-badge" class="sync-badge">Terhubung ke Database NIFASIA</span>
+    </div>
+    <div id="ringkas" class="sum"></div>
+    <div class="row-btns" id="ringkas-act"></div>
+  </div>
+
+  <div class="card">
+    <h2>Riwayat konseling di perangkat ini</h2>
+    <p class="sub">Hasil yang sudah Ibu kirim pada sesi ini.</p>
+    <div id="riwayat" class="hist"></div>
+  </div>
+</section>
+
+<!-- DASHBOARD PEMILIK -->
+<section class="page" id="p-pemilik" hidden>
+  <div class="page-head">
+    <span class="eyebrow">Area Pengelola & Admin</span>
+    <h2>Dashboard Pemilik NIFASIA</h2>
+    <p>Lihat isian dan pilihan KB para ibu, kesan dan pesan untuk bidan, serta jawab pertanyaan ibu. Jawaban langsung muncul di website ibu.</p>
+  </div>
+
+  <div id="owner-gate" class="card">
+    <h3>Masuk Dashboard Pemilik</h3>
+    <p class="sub">Masukkan sandi untuk membuka dashboard.</p>
+    <div class="fgrid" style="max-width:26rem">
+      <div class="fld">
+        <label for="owner-pin-input">Sandi</label>
+        <input id="owner-pin-input" type="password" placeholder="Masukkan sandi" autocomplete="off">
+      </div>
+    </div>
+    <div class="row-btns">
+      <button class="btn" type="button" id="owner-login-btn">Buka Dashboard Pemilik</button>
+    </div>
+    <p id="owner-login-err" class="alert" hidden></p>
+  </div>
+
+  <div id="owner-panel" class="page" hidden>
+    <div class="card">
+      <div class="row-btns" style="justify-content:space-between">
+        <div>
+          <h2>Rekapitulasi Seluruh Pengisian</h2>
+          <p class="sub" id="owner-sync-info">Memuat data dari database terpusat...</p>
+        </div>
+        <div class="row-btns">
+          <button class="btn small" type="button" id="btn-export-csv">Unduh Laporan CSV / Excel</button>
+          <button class="btn ghost small" type="button" id="btn-copy-all-report">Salin Rekap</button>
+          <button class="btn ghost small" type="button" id="btn-owner-logout">Kunci Dashboard</button>
+        </div>
+      </div>
+
+      <div class="stat-grid" id="owner-stats"></div>
+      <div id="owner-dist"></div>
+    </div>
+
+    <div class="card"><div id="owner-qa"></div></div>
+
+    <div class="card">
+      <h3>Filter &amp; Pencarian Data Pengisian</h3>
+      <div class="fgrid">
+        <div class="fld">
+          <label for="own-q">Cari Nama Ibu / Suami / Bidan</label>
+          <input id="own-q" type="text" placeholder="Ketik nama untuk mencari...">
+        </div>
+        <div class="fld">
+          <label for="own-metode">Filter Metode KB Dipilih</label>
+          <select id="own-metode">
+            <option value="">Semua metode</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label for="own-status">Filter Status Rujukan / Peringatan</label>
+          <select id="own-status">
+            <option value="">Semua status</option>
+            <option value="rujuk">Perlu penilaian dokter / rujukan</option>
+            <option value="aman">Tanpa peringatan medis khusus</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row-btns" style="justify-content:space-between">
+        <h3>Daftar Seluruh Hasil Pengisian (<span id="own-count">0</span>)</h3>
+      </div>
+      <div id="owner-list" class="hist"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>NIFASIA</strong> — Nifas, ASI, dan keluarga berencana dalam satu platform edukasi.</p>
+    <p>Kategori kelayakan mengacu pada WHO Medical Eligibility Criteria for Contraceptive Use (edisi kelima dan pembaruannya, termasuk pembaruan masa menyusui). Selalu ikuti pedoman nasional dan kebijakan fasilitas kesehatan setempat.</p>
+    <p>Pemasangan AKDR dan implan dilakukan oleh tenaga terlatih yang berwenang. Kontrasepsi mantap dilakukan oleh dokter.</p>
+  </div>
+</footer>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+
+/* Memori sesi in-memory untuk draf aktif pengguna (tanpa localStorage agar bersih dan aman di iframe) */
+var memStore={};
+function lsGet(k,d){try{var v=localStorage.getItem('nifasia.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem('nifasia.'+k,JSON.stringify(v))}catch(e){}}
+function memGet(k,d){if(Object.prototype.hasOwnProperty.call(memStore,k))return memStore[k];var v=lsGet(k,undefined);if(v!==undefined){memStore[k]=v;return v}return d}
+function memSet(k,v){memStore[k]=v;lsSet(k,v)}
+
+/* ---------- Firebase Cloud Integration ---------- */
+/* Isi dengan konfigurasi Firebase milik sendiri bila website dipasang di hosting sendiri, supaya data dari semua ibu tersimpan permanen di satu tempat. Contoh: {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."} */
+var OWN_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBQe7YOW0vBcdgmVEgdsprnUZNfNpP3Mck",
+  authDomain: "nifasia.firebaseapp.com",
+  projectId: "nifasia",
+  storageBucket: "nifasia.firebasestorage.app",
+  messagingSenderId: "539176247710",
+  appId: "1:539176247710:web:5433e57587db2f41e2768f",
+  measurementId: "G-FQGZJFZPB5"
+};
+
+var db=null, auth=null, currentUser=null, cloudReady=false;
+var appId = typeof __app_id !== 'undefined' ? __app_id : 'nifasia-platform';
+var cloudSubmissions = []; // Seluruh data dari Firestore
+var localSubmissions = lsGet('localSub',[]); // Cadangan sesi jika offline
+var unsubSubmissions = null;
+
+async function initCloud(){
+  try{
+    var rawCfg = (typeof __firebase_config !== 'undefined' && __firebase_config) ? __firebase_config : OWN_FIREBASE_CONFIG;
+    if(!rawCfg){
+      updateCloudBadge(false);
+      return;
+    }
+    var cfg = typeof rawCfg === 'string' ? JSON.parse(rawCfg) : rawCfg;
+    var app = initializeApp(cfg);
+    auth = getAuth(app);
+    db = getFirestore(app);
+
+    if(typeof __initial_auth_token !== 'undefined' && __initial_auth_token){
+      await signInWithCustomToken(auth, __initial_auth_token);
+    } else {
+      await signInAnonymously(auth);
+    }
+    currentUser = auth.currentUser;
+    cloudReady = !!(db && currentUser);
+    updateCloudBadge(cloudReady);
+
+    if(cloudReady){
+      subscribeAllSubmissions();
+      subscribeQuestions();
+    }
+  }catch(err){
+    console.warn('Inisialisasi cloud berjalan pada mode lokal:', err);
+    cloudReady = false;
+    updateCloudBadge(false);
+  }
+}
+
+function updateCloudBadge(isOnline){
+  var b=$('#cloud-status-badge');
+  if(!b)return;
+  if(isOnline){
+    b.className='sync-badge';
+    b.textContent='● Terhubung ke Database NIFASIA';
+  }else{
+    b.className='sync-badge local';
+    b.textContent='● Mode Sesi Aktif';
+  }
+}
+
+function subscribeAllSubmissions(){
+  if(!cloudReady || !db || !currentUser) return;
+  if(unsubSubmissions) unsubSubmissions();
+  /* RULE 1: Strict path /artifacts/{appId}/public/data/{collectionName} */
+  /* RULE 2: Simple collection() query without orderBy/limit, sort in JS memory */
+  var colRef = collection(db, 'artifacts', appId, 'public', 'data', 'konseling_submissions');
+  unsubSubmissions = onSnapshot(colRef, function(snap){
+    var items = [];
+    snap.forEach(function(d){
+      var data = d.data() || {};
+      data._docId = d.id;
+      items.push(data);
+    });
+    items.sort(function(a,b){
+      return (b.createdAtMs || 0) - (a.createdAtMs || 0);
+    });
+    cloudSubmissions = items;
+    if(cur==='pemilik' && ownerUnlocked){
+      renderOwnerDashboard();
+    }
+  }, function(err){
+    console.warn('Error membaca data konseling:', err);
+  });
+}
+
+/* ---------- Pertanyaan ibu & jawaban bidan ---------- */
+var cloudQuestions=[],localQuestions=lsGet('localQ',[]),unsubQ=null,qDraft={};
+function subscribeQuestions(){
+  if(!cloudReady||!db||!currentUser)return;
+  if(unsubQ)unsubQ();
+  unsubQ=onSnapshot(collection(db,'artifacts',appId,'public','data','pertanyaan_ibu'),function(snap){
+    var items=[];
+    snap.forEach(function(d){var x=d.data()||{};x._docId=d.id;items.push(x)});
+    cloudQuestions=items;
+    if(cur==='evaluasi')renderQA();
+    if(cur==='pemilik'&&ownerUnlocked)renderOwnerDashboard();
+  },function(err){console.warn('Error membaca pertanyaan:',err)});
+}
+function allQuestions(){
+  var seen={},out=[];
+  cloudQuestions.concat(localQuestions).forEach(function(x){if(seen[x._docId])return;seen[x._docId]=1;out.push(x)});
+  out.sort(function(a,b){return (b.createdAtMs||0)-(a.createdAtMs||0)});
+  return out;
+}
+function fmtTime(ms){return ms?new Date(ms).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'}):''}
+function myQuestions(){var uid=currentUser?currentUser.uid:'local';return allQuestions().filter(function(x){return x.uid===uid||String(x._docId).indexOf('local-')===0})}
+
+/* ---------- data ---------- */
+var OPT={
+ pend:[['tidak','Tidak sekolah'],['sd','SD / sederajat'],['smp','SMP / sederajat'],['sma','SMA / SMK / sederajat'],['d3','Diploma (D1 sampai D3)'],['s1','Sarjana (S1 / D4)'],['s2','Pascasarjana (S2 / S3)']],
+ kerja:[['irt','Ibu rumah tangga'],['asn','PNS / TNI / Polri'],['swasta','Karyawan swasta'],['wira','Wiraswasta / pedagang'],['tani','Petani / nelayan'],['buruh','Buruh'],['lain','Lainnya']],
+ jenisSalin:[['spontan','Pervaginam (spontan)'],['tindakan','Pervaginam dengan tindakan (vakum atau forsep)'],['sc','Seksio sesarea (SC)']],
+ kondisi:[['baik','Baik, tidak ada keluhan'],['keluhan','Ada keluhan']],
+ kHamil:[['hipertensi','Hipertensi atau preeklamsia'],['dm','Diabetes dalam kehamilan'],['lain','Komplikasi kehamilan lain (misalnya perdarahan, plasenta previa, ketuban pecah dini)'],['none','Tidak ada komplikasi saat kehamilan']],
+ kSalin:[['pph','Perdarahan banyak setelah bayi lahir'],['lain','Komplikasi persalinan lain (misalnya persalinan lama, robekan jalan lahir berat, plasenta tertinggal)'],['none','Tidak ada komplikasi saat persalinan']],
+ kNifas:[['infeksi','Infeksi nifas atau demam setelah melahirkan'],['hipertensi','Tekanan darah tinggi setelah melahirkan'],['lain','Komplikasi nifas lain (misalnya luka jahitan terbuka, payudara bengkak atau mastitis)'],['none','Tidak ada komplikasi pada masa nifas']],
+ keluhanSejak:[['hamil','Sejak masa kehamilan'],['salin','Sejak saat persalinan'],['nifas','Sejak masa nifas (setelah melahirkan)']],
+ kontLalu:[['none','Belum pernah'],['mal','MAL'],['pil','Pil'],['suntik','Suntik'],['implan','Implan'],['iud','AKDR/IUD'],['kondom','Kondom'],['lain','Lainnya']],
+ asi:[['eksklusif','ASI eksklusif (hanya ASI)'],['sebagian','ASI dan susu formula atau makanan lain'],['tidak','Tidak menyusui']],
+ frek:[['sering','8 kali atau lebih per 24 jam, siang dan malam'],['sedang','4 sampai 7 kali per 24 jam'],['jarang','Kurang dari 4 kali per 24 jam']],
+ abortus:[['tidak','Tidak pernah mengalami keguguran'],['pernah','Pernah mengalami keguguran']],
+ produksi:[['cukup','ASI cukup dan lancar'],['kurang','ASI terasa kurang'],['belum','ASI belum keluar lancar']],
+ haid:[['belum','Belum haid'],['sudah','Sudah haid kembali']],
+ hipertensi:[['tidak','Tidak ada'],['terkontrol','Ada, terkontrol dengan obat'],['sedang','Ada, tekanan darah 140-159/90-99 mmHg'],['berat','Ada, tekanan darah 160/100 mmHg atau lebih']],
+ diabetes:[['tidak','Tidak ada'],['ringan','Ada, tanpa komplikasi'],['komplikasi','Ada, dengan komplikasi (ginjal, mata, saraf, pembuluh darah)']],
+ jantung:[['tidak','Tidak ada'],['ya','Ada (jantung koroner atau penyakit jantung berat)']],
+ stroke:[['tidak','Tidak ada'],['ya','Pernah']],
+ trombosis:[['tidak','Tidak ada'],['riwayat','Pernah, sudah sembuh'],['aktif','Sedang terjadi atau sedang diobati']],
+ kankerPayudara:[['tidak','Tidak ada'],['sekarang','Sedang menderita'],['riwayat','Pernah, bebas penyakit 5 tahun atau lebih']],
+ hati:[['tidak','Tidak ada'],['ya','Ada (sirosis berat, tumor hati, hepatitis akut)']],
+ migrain:[['tidak','Tidak ada'],['ya','Ada migrain dengan aura']],
+ rokok:[['tidak','Tidak merokok'],['ringan','Merokok kurang dari 15 batang per hari'],['berat','Merokok 15 batang per hari atau lebih']],
+ obatAda:[['tidak','Tidak sedang minum obat'],['ya','Ya, sedang minum obat']],
+ obat:[['rifampisin','Rifampisin'],['antikonvulsan','Obat epilepsi (fenitoin, karbamazepin, fenobarbital, topiramat)'],['none','Bukan salah satu dari obat di atas']],
+ perdarahan:[['tidak','Tidak ada'],['ya','Ada, belum diketahui sebabnya']],
+ tujuan:[['menunda','Menunda kehamilan'],['menjarangkan','Menjarangkan kehamilan'],['berhenti','Mengakhiri kehamilan (tidak ingin anak lagi)']],
+ jarak:[['2','Sekitar 2 tahun'],['3-5','3 sampai 5 tahun'],['>5','Lebih dari 5 tahun'],['none','Tidak ingin hamil lagi']],
+  hormon:[['hormonal','Hormonal'],['non','Nonhormonal'],['bebas','Tidak masalah']],
+ cemas:[['haid','Perubahan pola haid'],['berat','Kenaikan berat badan'],['asi','Pengaruh pada ASI'],['nyeri','Nyeri saat pemasangan'],['alat','Takut jarum atau alat dalam tubuh'],['biaya','Biaya'],['none','Tidak ada kekhawatiran khusus']],
+ pasangan:[['dukung','Mendukung'],['belum','Belum dibicarakan'],['tidak','Kurang mendukung']]
+};
+var HNAME={hipertensi:'Hipertensi',diabetes:'Diabetes',jantung:'Penyakit jantung',stroke:'Stroke',trombosis:'Trombosis',kankerPayudara:'Kanker payudara',hati:'Penyakit hati',migrain:'Migrain',perdarahan:'Perdarahan vagina abnormal',rokok:'Merokok'};
+
+var METHODS=[
+{key:'mal',n:'MAL',full:'Metode Amenore Laktasi (MAL)',w:['MAL',''],h:'Nonhormonal',lama:'Sementara, maksimal 6 bulan',hormonal:false,panjang:false,
+ ring:'Mengandalkan ASI eksklusif untuk menunda ovulasi. Efektif bila tiga syarat terpenuhi.',
+ p:'Metode sementara yang memanfaatkan pemberian ASI eksklusif untuk mencegah kehamilan pada 6 bulan pertama setelah melahirkan.',
+ c:'Hisapan bayi yang sering menekan hormon yang memicu ovulasi, sehingga sel telur tidak dilepaskan.',
+ ef:'Sekitar 98% bila ketiga syarat dipenuhi selama 6 bulan pertama.',
+ w2:'Dapat dimulai segera setelah melahirkan. Berlaku paling lama sampai bayi berusia 6 bulan.',
+ asi:'Mendukung produksi ASI.',
+ kel:['Efektif dan langsung berlaku','Tanpa biaya dan tanpa hormon tambahan','Mendukung kesehatan bayi lewat ASI eksklusif'],
+ kek:['Hanya berlaku sampai 6 bulan','Bergantung pada pola menyusui yang ketat','Tidak melindungi dari infeksi menular seksual (IMS)'],
+ es:['Tidak ada efek samping dari metode ini'],
+ kh:{t:'Tiga syarat MAL',l:['Ibu belum haid (perdarahan nifas dalam 56 hari pertama tidak dihitung)','Bayi menyusu eksklusif atau hampir eksklusif, siang dan malam, tanpa jeda lebih dari 4 jam di siang hari dan 6 jam di malam hari','Bayi berusia kurang dari 6 bulan']},
+ siap:['Pastikan bayi kurang dari 6 bulan, ibu belum haid, dan bayi hanya mendapat ASI','Nilai teknik dan frekuensi menyusui','Tanyakan rencana metode lanjutan'],
+ lak:['Tidak ada tindakan atau alat yang dipasang','Ajarkan menyusui sesuai keinginan bayi, siang dan malam','Bila ibu bekerja, bicarakan bahwa memerah ASI tidak seandal menyusui langsung'],
+ edu:['Segera beralih ke metode lain bila haid kembali, bayi mulai mendapat makanan atau susu lain, atau bayi mencapai 6 bulan','Kondom dapat dipakai sebagai metode jembatan','Siapkan metode lanjutan sebelum bayi 6 bulan'],
+ bh:['Haid pertama muncul','Frekuensi menyusui menurun tajam atau bayi mulai diberi tambahan','Ibu ragu masih terlindungi: segera konsultasi untuk metode lanjutan'],
+ fu:'Kontrol bersama kunjungan nifas dan imunisasi bayi. Siapkan metode lanjutan sebelum bayi berusia 6 bulan.'},
+{key:'aud',n:'AKDR tembaga',full:'IUD/AKDR tembaga',w:['AKDR','tembaga'],h:'Nonhormonal',lama:'Hingga 10 tahun',hormonal:false,panjang:true,
+ ring:'Alat berbentuk T berlapis tembaga di dalam rahim. Sangat efektif, tidak memengaruhi ASI.',
+ p:'Alat kecil berbentuk T berlapis tembaga yang dipasang di dalam rahim oleh tenaga terlatih. Tidak mengandung hormon.',
+ c:'Ion tembaga mengganggu gerak dan fungsi sperma sehingga pembuahan sulit terjadi.',
+ ef:'Lebih dari 99% (kurang dari 1 kehamilan per 100 perempuan per tahun).',
+ w2:'Pascaplasenta atau dalam 48 jam setelah melahirkan, atau setelah 4 minggu pascasalin. Pemasangan antara 48 jam dan 4 minggu sebaiknya ditunda karena risiko alat terlepas lebih tinggi.',
+ asi:'Tidak memengaruhi ASI.',
+ kel:['Perlindungan jangka panjang, sampai sekitar 10 tahun','Tidak perlu diingat setiap hari','Tanpa hormon dan tidak mengurangi ASI','Kesuburan cepat kembali setelah dilepas'],
+ kek:['Perlu pemasangan dan pelepasan oleh tenaga terlatih','Haid dapat lebih banyak atau lebih nyeri, terutama 3 sampai 6 bulan pertama','Risiko terlepas (ekspulsi) lebih tinggi bila dipasang pascasalin','Tidak melindungi dari IMS'],
+ es:['Haid lebih banyak dan lebih lama, kram perut','Bercak darah di luar haid','Jarang: alat terlepas, infeksi panggul, perforasi rahim'],
+ kh:{t:'Syarat khusus',l:['Tidak ada infeksi nifas atau infeksi panggul','Tidak ada perdarahan vagina abnormal yang belum diketahui sebabnya','Rahim tidak dalam kondisi yang menghalangi pemasangan']},
+ siap:['Pastikan ibu tidak hamil dan tidak ada tanda infeksi nifas','Periksa tanda vital, kontraksi rahim, dan lokia; pemeriksaan panggul bila perlu','Jelaskan prosedur dan dapatkan persetujuan tertulis (informed consent)'],
+ lak:['Pemasangan oleh bidan atau dokter terlatih yang berwenang, dengan teknik aseptik','Waktu pemasangan: pascaplasenta atau dalam 48 jam, atau setelah 4 minggu','Beri kartu akseptor yang memuat tanggal pasang dan tanggal lepas'],
+ edu:['Periksa benang AKDR sendiri setelah haid','Haid lebih banyak pada awal pemakaian umumnya membaik','Kontrol 3 sampai 6 minggu setelah pemasangan, lalu bila ada keluhan'],
+ bh:['Terlambat haid disertai nyeri perut hebat','Demam, keputihan berbau, atau nyeri perut bawah','Perdarahan banyak','Benang tidak teraba atau bagian keras alat teraba','Nyeri saat berhubungan seksual'],
+ fu:'Kontrol 3 sampai 6 minggu setelah pemasangan, lalu bila ada keluhan. Catat tanggal lepas pada kartu.'},
+{key:'imp',n:'Implan',full:'Implan',w:['Implan',''],h:'Hormonal (progestin)',lama:'3 sampai 5 tahun, sesuai jenis',hormonal:true,panjang:true,
+ ring:'Batang kecil di bawah kulit lengan. Sangat efektif dan tidak mengurangi ASI.',
+ p:'Satu atau dua batang kecil berisi progestin yang dipasang di bawah kulit lengan atas dengan bius lokal.',
+ c:'Menekan ovulasi dan mengentalkan lendir leher rahim sehingga sperma sulit masuk.',
+ ef:'Lebih dari 99% (sekitar 5 kehamilan per 10.000 perempuan per tahun).',
+ w2:'Dapat dipasang kapan saja setelah melahirkan bila ibu dipastikan tidak hamil. Pada ibu menyusui kurang dari 6 minggu termasuk kategori 2; setelah itu kategori 1.',
+ asi:'Tidak mengurangi produksi ASI.',
+ kel:['Sangat efektif dan jangka panjang','Tidak perlu diingat setiap hari','Tidak memengaruhi ASI','Kesuburan cepat kembali setelah dicabut'],
+ kek:['Perlu tindakan kecil untuk pasang dan cabut oleh tenaga terlatih','Pola haid sering berubah','Tidak melindungi dari IMS'],
+ es:['Haid tidak teratur, bercak, atau tidak haid sama sekali','Sakit kepala, jerawat, nyeri payudara','Perubahan berat badan','Memar atau nyeri ringan di lokasi pemasangan'],
+ kh:{t:'Kondisi yang perlu diperhatikan',l:['Kanker payudara sekarang: tidak boleh (kategori 4)','Penyakit hati berat atau trombosis aktif: umumnya tidak dianjurkan','Obat rifampisin atau obat epilepsi tertentu menurunkan efektivitas']},
+ siap:['Pastikan ibu tidak hamil','Periksa tekanan darah dan tinjau riwayat penyakit serta obat yang diminum','Jelaskan pola haid yang mungkin berubah dan dapatkan persetujuan'],
+ lak:['Pemasangan di bawah kulit lengan atas oleh tenaga terlatih yang berwenang, dengan bius lokal dan teknik aseptik','Tutup luka dengan plester dan balutan tekan','Beri kartu implan berisi tanggal pasang dan tanggal cabut'],
+ edu:['Jaga luka tetap kering dan bersih sekitar 3 hari','Perubahan pola haid umum terjadi dan tidak berbahaya','Cabut tepat waktu sesuai jenis implan'],
+ bh:['Nyeri, bengkak, kemerahan, atau nanah di lokasi pemasangan','Batang tidak teraba atau keluar sebagian','Sakit kepala hebat atau perdarahan banyak','Terlambat haid disertai nyeri perut hebat'],
+ fu:'Kontrol bila ada keluhan. Catat tanggal cabut sesuai jenis implan pada kartu.'},
+{key:'pop',n:'Pil progestin',full:'Pil progestin',w:['Pil','progestin'],h:'Hormonal (progestin)',lama:'Selama diminum setiap hari',hormonal:true,panjang:false,
+ ring:'Pil harian tanpa estrogen, aman untuk ibu menyusui.',
+ p:'Pil yang hanya mengandung progestin (sering disebut minipil), diminum setiap hari tanpa jeda.',
+ c:'Mengentalkan lendir leher rahim, menipiskan lapisan rahim, dan pada sebagian pemakai menekan ovulasi.',
+ ef:'Sekitar 99% bila dipakai sempurna, sekitar 93% pada pemakaian sehari-hari.',
+ w2:'Dapat dimulai setelah melahirkan bila ibu dipastikan tidak hamil. Pada ibu menyusui kurang dari 6 minggu termasuk kategori 2; setelah itu kategori 1.',
+ asi:'Tidak mengurangi produksi ASI.',
+ kel:['Aman untuk ibu menyusui','Mudah dihentikan, kesuburan cepat kembali','Tidak mengandung estrogen'],
+ kek:['Harus diminum setiap hari pada jam yang sama','Efektivitas turun bila sering lupa','Pola haid dapat berubah','Tidak melindungi dari IMS'],
+ es:['Haid tidak teratur, bercak, atau tidak haid','Mual, nyeri payudara, jerawat','Perubahan suasana hati'],
+ kh:{t:'Aturan penggunaan',l:['Satu pil setiap hari pada jam yang sama, tanpa jeda antar-kemasan','Terlambat lebih dari 3 jam (jenis linestrenol atau noretisteron) atau lebih dari 12 jam (desogestrel): minum segera dan pakai kondom atau tidak berhubungan selama 2 hari','Muntah dalam 2 jam setelah minum atau diare berat: anggap pil terlewat','Rifampisin dan obat epilepsi tertentu menurunkan efektivitas']},
+ siap:['Pastikan ibu tidak hamil','Tinjau obat yang diminum (rifampisin dan obat epilepsi menurunkan efektivitas)','Pastikan ibu mampu minum pil teratur'],
+ lak:['Berikan pil untuk 1 sampai 3 siklus sesuai kebijakan fasilitas','Peragakan cara minum dan cara menandai kemasan','Tentukan jadwal kembali sebelum pil habis'],
+ edu:['Minum pada jam yang sama setiap hari','Jangan berhenti di antara kemasan','Bila lupa, ikuti aturan keterlambatan','Bercak darah pada awal pemakaian umum terjadi'],
+ bh:['Perdarahan banyak','Nyeri perut hebat saat terlambat haid','Sakit kepala hebat','Muntah atau diare berat yang berulang'],
+ fu:'Kembali sebelum persediaan pil habis, atau bila ada keluhan.'},
+{key:'dmpa',n:'Suntik progestin',full:'Suntik progestin',w:['Suntik','progestin'],h:'Hormonal (progestin)',lama:'Tiap 8 atau 12 minggu',hormonal:true,panjang:false,
+ ring:'Suntikan berkala tanpa estrogen. Tidak mengurangi ASI.',
+ p:'Suntikan hormon progestin ke otot: DMPA setiap 12 minggu (3 bulan) atau NET-EN setiap 8 minggu (2 bulan).',
+ c:'Menekan ovulasi dan mengentalkan lendir leher rahim.',
+ ef:'Sekitar 96% pada pemakaian sehari-hari, lebih dari 99% bila suntikan tepat waktu.',
+ w2:'Dapat dimulai setelah melahirkan bila ibu dipastikan tidak hamil. Pada ibu menyusui kurang dari 6 minggu termasuk kategori 2; setelah itu kategori 1. Ikuti kebijakan fasilitas setempat.',
+ asi:'Tidak mengurangi produksi ASI.',
+ kel:['Tidak perlu diingat setiap hari','Privat, tidak terlihat orang lain','Tidak memengaruhi ASI'],
+ kek:['Harus kembali tepat waktu','Pola haid berubah dan bisa tidak haid','Berat badan dapat naik','Kesuburan dapat kembali lebih lambat, sampai beberapa bulan setelah berhenti','Tidak melindungi dari IMS'],
+ es:['Haid tidak teratur atau tidak haid','Kenaikan berat badan','Sakit kepala, nyeri payudara','Nyeri ringan di tempat suntik'],
+ kh:{t:'Jadwal penyuntikan',l:['DMPA: ulang setiap 12 minggu','NET-EN: ulang setiap 8 minggu','Toleransi keterlambatan mengikuti kebijakan fasilitas (WHO: DMPA sampai 4 minggu, NET-EN sampai 2 minggu)','Catat tanggal kembali pada kartu KB']},
+ siap:['Pastikan ibu tidak hamil','Ukur tekanan darah dan tinjau riwayat penyakit','Tentukan tanggal suntikan berikutnya bersama ibu'],
+ lak:['Suntik ke otot (intramuskular) dengan teknik aseptik','Jangan memijat tempat suntikan','Tulis tanggal kembali pada kartu KB'],
+ edu:['Haid tidak teratur atau tidak haid adalah efek yang umum','Kembali tepat waktu agar tetap terlindungi','Bila terlambat melebihi toleransi, pakai kondom dan konsultasi'],
+ bh:['Perdarahan banyak atau berkepanjangan','Sakit kepala hebat','Nyeri, bengkak, atau nanah di tempat suntik','Terlambat haid disertai nyeri perut hebat'],
+ fu:'Kembali sesuai tanggal suntikan berikutnya.'},
+{key:'kon',n:'Kondom',full:'Kondom',w:['Kondom',''],h:'Nonhormonal',lama:'Setiap berhubungan seksual',hormonal:false,panjang:false,
+ ring:'Satu-satunya metode di daftar ini yang juga melindungi dari IMS.',
+ p:'Selubung tipis dari lateks atau bahan sintetis yang dipasang pada penis (kondom pria) atau di dalam vagina (kondom wanita).',
+ c:'Menghalangi sperma masuk ke dalam vagina dan mengurangi penularan IMS.',
+ ef:'Sekitar 98% bila dipakai benar setiap kali, sekitar 87% pada pemakaian sehari-hari.',
+ w2:'Dapat dipakai kapan saja, termasuk sebagai metode jembatan atau pendamping metode lain.',
+ asi:'Tidak memengaruhi ASI.',
+ kel:['Tanpa hormon dan tidak memengaruhi ASI','Melindungi dari IMS termasuk HIV','Mudah didapat dan dapat dipakai bersama metode lain'],
+ kek:['Bergantung pada kepatuhan dan kerja sama pasangan','Dipakai setiap kali berhubungan','Dapat robek atau lepas','Sebagian orang alergi lateks'],
+ es:['Alergi lateks pada sebagian orang','Rasa tidak nyaman atau gesekan; vagina kering saat menyusui dapat dibantu pelicin berbahan dasar air'],
+ kh:{t:'Cara menggunakan kondom pria',l:['Cek tanggal kedaluwarsa dan kemasan utuh','Pasang saat penis tegang, sebelum ada kontak dengan vagina','Tekan ujung kondom agar tidak ada udara, lalu gulung sampai pangkal','Setelah ejakulasi, tahan pangkal kondom lalu lepas sebelum penis lemas','Ikat atau bungkus, buang ke tempat sampah; satu kondom hanya untuk satu kali pakai']},
+ siap:['Tanyakan alergi lateks','Pastikan suami bersedia dan paham cara pakai','Cek tanggal kedaluwarsa'],
+ lak:['Peragakan pemakaian pada model','Berikan persediaan dan jelaskan cara menyimpan (tempat sejuk, jauh dari panas)'],
+ edu:['Pakai kondom baru di setiap hubungan','Gunakan pelicin berbahan air bila vagina kering; jangan pelicin berbahan minyak','Simpan persediaan cadangan di rumah'],
+ bh:['Kondom robek, bocor, atau lepas saat berhubungan: segera konsultasi, kontrasepsi darurat paling efektif bila diberikan secepatnya (maksimal 5 hari)','Gatal, kemerahan, atau bengkak setelah pemakaian: kemungkinan alergi lateks'],
+ fu:'Kembali bila butuh persediaan, ada masalah, atau ibu ingin beralih ke metode lain.'},
+{key:'chc',n:'Kombinasi (estrogen)',full:'Kontrasepsi mengandung estrogen',w:['Kombinasi','(estrogen)'],h:'Hormonal (estrogen dan progestin)',lama:'Pil harian atau suntik bulanan',hormonal:true,panjang:false,
+ ring:'Pil, suntik bulanan, koyo, atau cincin vagina. Pada nifas dibatasi ketat.',
+ p:'Metode hormonal yang menggabungkan estrogen dan progestin. Jenisnya: pil kombinasi, suntik kombinasi (1 bulan), koyo, dan cincin vagina.',
+ c:'Menekan ovulasi, mengentalkan lendir leher rahim, dan menipiskan lapisan rahim.',
+ ef:'Pil kombinasi sekitar 93% pada pemakaian sehari-hari dan lebih dari 99% bila sempurna. Suntik kombinasi sekitar 97%.',
+ w2:'Dibatasi pada masa nifas. Lihat pembatasan di bawah.',
+ asi:'Estrogen dapat mengurangi volume ASI, terutama pada 6 bulan pertama.',
+ kel:['Haid biasanya lebih teratur dan lebih ringan','Jerawat dapat membaik'],
+ kek:['Dapat menurunkan produksi ASI','Meningkatkan risiko bekuan darah, terutama pada nifas','Tidak cocok pada hipertensi, migrain dengan aura, atau perokok usia 35 tahun ke atas','Tidak melindungi dari IMS'],
+ es:['Mual, nyeri payudara, sakit kepala','Perubahan pola haid','Jarang tetapi serius: bekuan darah, tekanan darah naik'],
+ kh:{t:'Pembatasan pada masa nifas',l:['Kurang dari 6 minggu pascasalin (menyusui atau tidak): kategori 4, tidak boleh','Menyusui, 6 minggu sampai 6 bulan: kategori 3, umumnya tidak dianjurkan','Menyusui, lebih dari 6 bulan: kategori 2','Tidak menyusui, 21 sampai 42 hari: kategori 3 bila ada faktor risiko bekuan darah (misalnya SC, perdarahan postpartum, preeklamsia, merokok, usia 35 tahun ke atas), selain itu kategori 2','Tidak menyusui, lebih dari 42 hari: kategori 1']},
+ siap:['Pastikan usia nifas dan status menyusui sesuai pembatasan','Ukur tekanan darah','Skrining migrain dengan aura, merokok, riwayat bekuan darah, penyakit hati'],
+ lak:['Hanya diberikan bila hasil skrining kategori 1 atau 2','Pada ibu menyusui, umumnya ditunda hingga bayi 6 bulan atau lebih; pertimbangkan metode progestin atau nonhormonal lebih dulu'],
+ edu:['Pil diminum setiap hari pada jam yang sama','Pantau produksi ASI; bila menurun, konsultasi untuk beralih ke metode progestin','Jangan merokok selama memakai'],
+ bh:['Nyeri dada atau sesak napas mendadak','Nyeri, bengkak, atau kemerahan pada satu tungkai','Sakit kepala hebat mendadak atau gangguan penglihatan','Nyeri perut hebat'],
+ fu:'Kontrol tekanan darah dan produksi ASI sesuai jadwal fasilitas.'}
+];
+var MBY={};METHODS.forEach(function(m){MBY[m.key]=m});
+
+/* MEC categories per condition: aud, imp, pop, dmpa, chc */
+var COND={
+ hipertensi:{terkontrol:{n:'Hipertensi terkontrol',c:{aud:1,imp:1,pop:1,dmpa:2,chc:3}},
+  sedang:{n:'Hipertensi 140-159/90-99 mmHg',c:{aud:1,imp:1,pop:1,dmpa:2,chc:3}},
+  berat:{n:'Hipertensi 160/100 mmHg atau lebih',c:{aud:2,imp:2,pop:2,dmpa:3,chc:4}}},
+ diabetes:{ringan:{n:'Diabetes tanpa komplikasi',c:{aud:1,imp:2,pop:2,dmpa:2,chc:2}},
+  komplikasi:{n:'Diabetes dengan komplikasi',c:{aud:1,imp:2,pop:2,dmpa:3,chc:4}}},
+ jantung:{ya:{n:'Penyakit jantung',c:{aud:1,imp:2,pop:2,dmpa:3,chc:4}}},
+ stroke:{ya:{n:'Riwayat stroke',c:{aud:1,imp:2,pop:2,dmpa:3,chc:4}}},
+ trombosis:{riwayat:{n:'Riwayat trombosis',c:{aud:1,imp:2,pop:2,dmpa:2,chc:4}},
+  aktif:{n:'Trombosis aktif',c:{aud:2,imp:3,pop:3,dmpa:3,chc:4}}},
+ kankerPayudara:{sekarang:{n:'Kanker payudara saat ini',c:{aud:1,imp:4,pop:4,dmpa:4,chc:4}},
+  riwayat:{n:'Riwayat kanker payudara',c:{aud:1,imp:3,pop:3,dmpa:3,chc:3}}},
+ hati:{ya:{n:'Penyakit hati berat atau aktif',c:{aud:1,imp:3,pop:3,dmpa:3,chc:4}}},
+ migrain:{ya:{n:'Migrain dengan aura',c:{aud:1,imp:1,pop:1,dmpa:1,chc:4}}},
+ perdarahan:{ya:{n:'Perdarahan vagina abnormal belum diketahui sebabnya',c:{aud:4,imp:3,pop:2,dmpa:3,chc:3}}}
+};
+var DRUG={n:'Obat yang menurunkan efektivitas hormonal',c:{aud:1,imp:3,pop:3,dmpa:1,chc:3}};
+var REFER=['jantung','stroke','trombosis','kankerPayudara','hati','perdarahan'];
+
+var CATTXT={
+ 1:'Dapat digunakan tanpa pembatasan',
+ 2:'Umumnya dapat digunakan; manfaat lebih besar dari risiko',
+ 3:'Umumnya tidak dianjurkan; risiko lebih besar dari manfaat',
+ 4:'Tidak boleh digunakan; risiko kesehatan tidak dapat diterima'
+};
+
+/* Pertanyaan ibu dikirim ke bidan; jawaban ditulis bidan lewat Dashboard Pemilik */
+async function askQA(){
+  var inp=$('#qa-input'),q=(inp?inp.value:'').trim();
+  if(!q){toast('Tulis pertanyaan terlebih dahulu.');return}
+  var now=Date.now(),id='local-'+now;
+  var item={uid:currentUser?currentUser.uid:'local',nama:S.nama||'Ibu (tanpa nama)',pertanyaan:q,jawaban:'',status:'menunggu',createdAtMs:now,dijawabAtMs:0};
+  var sent=false;
+  if(cloudReady&&db&&currentUser){
+    try{var r=await addDoc(collection(db,'artifacts',appId,'public','data','pertanyaan_ibu'),item);id=r.id;sent=true}
+    catch(err){console.error('Gagal mengirim pertanyaan:',err)}
+  }
+  if(!sent){item._docId=id;localQuestions.unshift(item);lsSet('localQ',localQuestions)}
+  S.qa=[{id:id,q:q}].concat(S.qa||[]).slice(0,30);
+  save();if(inp)inp.value='';
+  toast(sent?'Pertanyaan terkirim.':'Pertanyaan tersimpan di sesi ini.');
+  renderQA();renderRingkas();
+}
+function renderQA(){
+  var log=myQuestions(),note=$('#qa-note'),box=$('#qa-log');
+  if(!box)return;
+  if(note)note.textContent=cloudReady?'Jawaban muncul di sini. Buka kembali halaman ini dari perangkat dan peramban yang sama untuk melihatnya.':'Mode sesi: pertanyaan hanya tersimpan selama halaman ini terbuka.';
+  box.innerHTML=log.length?log.map(function(x){
+    var ans=x.jawaban?'<div class="alert ok"><strong>Jawaban</strong> <span class="hint">'+esc(fmtTime(x.dijawabAtMs))+'</span><p style="margin-top:.3rem;white-space:pre-wrap">'+esc(x.jawaban)+'</p></div>':'<div class="notice">&#9203; Menunggu jawaban.</div>';
+    return '<div class="box"><p class="hint">'+esc(fmtTime(x.createdAtMs))+'</p><p><strong>'+esc(x.pertanyaan||'')+'</strong></p><div style="margin-top:.6rem">'+ans+'</div></div>';
+  }).join(''):'<p class="sub">Belum ada pertanyaan.</p>';
+}
+function renderOwnerQA(){
+  var el=$('#owner-qa');if(!el)return;
+  var a=document.activeElement;if(a&&a.dataset&&a.dataset.ans!==undefined&&el.contains(a))return;
+  var qs=allQuestions(),open=qs.filter(function(x){return !x.jawaban}).length;
+  qs.sort(function(x,y){return (x.jawaban?1:0)-(y.jawaban?1:0)});
+  el.innerHTML='<div class="row-btns" style="justify-content:space-between"><h3>Pertanyaan dari Ibu ('+qs.length+')</h3><span class="chip '+(open?'c3':'c1')+'">'+(open?open+' belum dijawab':'Semua sudah dijawab')+'</span></div>'+
+  (qs.length?'<div class="hist" style="margin-top:.6rem">'+qs.map(function(x){
+    var id=esc(x._docId),dr=qDraft[x._docId]!=null?qDraft[x._docId]:(x.jawaban||'');
+    return '<div class="box"><div class="row-btns" style="justify-content:space-between"><strong>'+esc(x.nama||'Ibu')+'</strong><span class="hint">'+esc(fmtTime(x.createdAtMs))+'</span></div><p style="margin:.4rem 0">'+esc(x.pertanyaan||'')+'</p>'+
+    '<div class="fld"><label for="ans-'+id+'">Jawaban bidan</label><textarea id="ans-'+id+'" data-ans="'+id+'" placeholder="Tulis jawaban untuk ibu">'+esc(dr)+'</textarea></div>'+
+    '<div class="row-btns" style="margin-top:.5rem"><button class="btn small" type="button" data-ans-send="'+id+'">'+(x.jawaban?'Perbarui jawaban':'Kirim jawaban')+'</button>'+(x.jawaban?'<span class="chip c1">Sudah dijawab</span>':'<span class="chip c3">Belum dijawab</span>')+'</div></div>';
+  }).join('')+'</div>':'<p class="sub" style="margin-top:.5rem">Belum ada pertanyaan dari ibu.</p>');
+}
+async function answerQuestion(id){
+  var ta=document.getElementById('ans-'+id),txt=((ta?ta.value:qDraft[id])||'').trim();
+  if(!txt){toast('Tulis jawaban terlebih dahulu.');return}
+  var now=Date.now();
+  if(String(id).indexOf('local-')===0){
+    localQuestions.forEach(function(x){if(x._docId===id){x.jawaban=txt;x.dijawabAtMs=now;x.status='dijawab'}});
+    lsSet('localQ',localQuestions);
+  }else if(cloudReady&&db){
+    try{await updateDoc(doc(db,'artifacts',appId,'public','data','pertanyaan_ibu',id),{jawaban:txt,dijawabAtMs:now,status:'dijawab'})}
+    catch(err){console.error(err);toast('Jawaban gagal terkirim. Coba lagi.');return}
+  }
+  delete qDraft[id];
+  toast('Jawaban terkirim dan muncul di website ibu.');
+  renderOwnerDashboard();
+}
+
+var FU_GEN='Konsultasikan ke bidan bila ada keluhan atau ibu berubah pikiran. Ikuti kunjungan nifas sesuai jadwal.';
+var BAHAYA_NIFAS=['Perdarahan banyak (pembalut penuh dalam kurang dari 1 jam) atau bekuan besar','Demam 38 derajat Celsius atau lebih, menggigil','Nyeri perut bawah hebat atau lokia berbau busuk','Sakit kepala hebat, pandangan kabur, atau kejang','Bengkak, nyeri, atau kemerahan pada satu betis','Sesak napas atau nyeri dada','Payudara bengkak, merah, nyeri disertai demam','Perasaan sangat sedih atau cemas yang mengganggu merawat bayi'];
+
+/* ---------- state ---------- */
+function today(){var d=new Date();var m=('0'+(d.getMonth()+1)).slice(-2),dd=('0'+d.getDate()).slice(-2);return d.getFullYear()+'-'+m+'-'+dd}
+function defaults(){return {regDone:false,regAt:0,telp:'',pend:'',kerja:'',kerjaCat:'',alamat:'',nama:'',usia:'',suami:'',usiaSuami:'',P:'',abortus:'',A:'',anak:'',kontLalu:[],kontLaluCat:'',
+ lamaN:'',lamaU:'minggu',jenisSalin:'',kondisi:'',kondisiCat:'',keluhanSejak:'',kHamil:[],kSalin:[],kNifas:[],
+ asi:'',frek:'',produksi:'',haid:'',
+ hipertensi:'',diabetes:'',jantung:'',stroke:'',trombosis:'',kankerPayudara:'',hati:'',migrain:'',rokok:'',obatAda:'',obatNama:'',obat:[],perdarahan:'',
+ tujuan:'',jarak:'',minat:[],hormon:'',cemas:[],pasangan:'',
+ bidan:'',tanggal:today(),pilihan:'',catatan:'',setuju:false,qa:[],kesan:'',saran:''}}
+var S=Object.assign(defaults(),memGet('kbnifas.draft',{}));
+S.tanggal=today();
+var hist=memGet('kbnifas.riwayat',[]);
+var cur='beranda',curM='mal',pendDel=null,pendReset=false;
+var regEdit=false,regBak=null,pendRefill=false;
+var REGK=['telp','pend','kerja','kerjaCat','alamat'];
+var ownerPin='NIFASIA',ownerUnlocked=false,pendCloudDel=null,recClosed='',recTop='';
+function save(){memSet('kbnifas.draft',S)}
+function kAll(){return [].concat(S.kHamil||[],S.kSalin||[],S.kNifas||[])}
+function smoker(){return S.rokok==='ringan'||S.rokok==='berat'}
+function obatSet(){
+  if(S.obatAda!=='ya')return [];
+  var s=(S.obat||[]).filter(function(x){return x!=='none'}),n=(S.obatNama||'').toLowerCase();
+  if(/rifamp/.test(n)&&s.indexOf('rifampisin')<0)s.push('rifampisin');
+  if(/fenitoin|phenytoin|karbamazepin|carbamazepin|fenobarbital|phenobarbital|topiramat|primidon/.test(n)&&s.indexOf('antikonvulsan')<0)s.push('antikonvulsan');
+  return s;
+}
+
+/* ---------- illustrations (inline SVG, original) ---------- */
+var ST='#A8326A';
+function svg(vb,inner,cls){return '<svg'+(cls?' class="'+cls+'"':'')+' viewBox="'+vb+'" aria-hidden="true" focusable="false">'+inner+'</svg>'}
+function sk(w){return ' stroke="'+ST+'" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round"'}
+var MBG={mal:'#FFD9E5',aud:'#FFEFB0',imp:'#FFD9E5',pop:'#FFEFB0',dmpa:'#FFD9E5',kon:'#FFEFB0',chc:'#FFD9E5'};
+var MI={
+ mal:'<path d="M24 10C24 10 14.5 20.5 14.5 28a9.5 9.5 0 0 0 19 0C33.5 20.5 24 10 24 10Z" fill="#fff"'+sk(2.4)+'/><path d="M19.5 29a4.6 4.6 0 0 0 3.5 4.4" fill="none" stroke="#FF8FB8" stroke-width="2.2" stroke-linecap="round"/>',
+ aud:'<rect x="11" y="13" width="26" height="6" rx="3" fill="#E8A15C"'+sk(1.6)+'/><rect x="21" y="13" width="6" height="25" rx="3" fill="#E8A15C"'+sk(1.6)+'/><path d="M24 38v6" fill="none"'+sk(1.6)+'/>',
+ imp:'<rect x="5" y="16" width="38" height="16" rx="8" fill="#F6C9A8"'+sk(1.6)+'/><rect x="13" y="22" width="22" height="4" rx="2" fill="#fff"'+sk(1.6)+'/>',
+ pop:'<g transform="rotate(-40 24 24)"><rect x="8" y="17" width="32" height="14" rx="7" fill="#fff"/><path d="M15 17h9v14h-9a7 7 0 0 1 0-14Z" fill="#FF8FB8"/><path d="M24 17v14" fill="none"'+sk(2.2)+'/><rect x="8" y="17" width="32" height="14" rx="7" fill="none"'+sk(2.2)+'/></g>',
+ dmpa:'<g transform="rotate(-38 24 24)"><rect x="12" y="19" width="22" height="10" rx="2" fill="#fff"'+sk(2)+'/><rect x="14" y="21" width="11" height="6" fill="#FF8FB8"/><path d="M12 24H6M5 18v12M34 24h9" fill="none"'+sk(2.2)+'/></g>',
+ kon:'<circle cx="24" cy="24" r="13" fill="#fff"'+sk(2.2)+'/><circle cx="24" cy="24" r="7" fill="#FFE08A"'+sk(1.8)+'/>',
+ chc:'<circle cx="18" cy="24" r="10" fill="#FF8FB8"'+sk(2)+'/><circle cx="30" cy="24" r="10" fill="#FFE08A"'+sk(2)+'/>'
+};
+function mico(k,cls){return svg('0 0 48 48','<circle cx="24" cy="24" r="24" fill="'+MBG[k]+'"/>'+MI[k],'mi '+(cls||''))}
+function heartP(x,y,s,f){return '<path transform="translate('+x+' '+y+') scale('+s+')" d="M0 8C-9 2-12-3-12-7a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 4-3 9-12 15Z" fill="'+f+'"/>'}
+function starPts(cx,cy,ro,ri){var p=[];for(var i=0;i<10;i++){var r=i%2?ri:ro,a=-Math.PI/2+i*Math.PI/5;p.push((cx+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1))}return p.join(' ')}
+var FI=[
+ svg('0 0 40 40','<circle cx="20" cy="20" r="20" fill="#FFD9E5"/><g fill="#FF8FB8"><circle cx="28" cy="20" r="5"/><circle cx="22.5" cy="27.6" r="5"/><circle cx="13.5" cy="24.7" r="5"/><circle cx="13.5" cy="15.3" r="5"/><circle cx="22.5" cy="12.4" r="5"/></g><circle cx="20" cy="20" r="4.5" fill="#FFE08A"/>'),
+ svg('0 0 40 40','<circle cx="20" cy="20" r="20" fill="#FFEFB0"/><path d="M20 8C20 8 12 17 12 23a8 8 0 0 0 16 0C28 17 20 8 20 8Z" fill="#fff"'+sk(2)+'/><path d="M16.5 24a3.8 3.8 0 0 0 3 3.6" fill="none" stroke="#FF8FB8" stroke-width="2" stroke-linecap="round"/>'),
+ svg('0 0 40 40','<circle cx="20" cy="20" r="20" fill="#FFD9E5"/><rect x="9" y="11" width="22" height="20" rx="4" fill="#fff"'+sk(2)+'/><path d="M9 17h22" fill="none"'+sk(2)+'/><path d="M9 15a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4v2H9Z" fill="#FF8FB8"/><g fill="'+ST+'"><circle cx="15" cy="23" r="1.6"/><circle cx="20" cy="23" r="1.6"/><circle cx="25" cy="23" r="1.6"/><circle cx="15" cy="27.5" r="1.6"/><circle cx="20" cy="27.5" r="1.6"/></g>'),
+ svg('0 0 40 40','<circle cx="20" cy="20" r="20" fill="#FFEFB0"/><circle cx="20" cy="20" r="11" fill="#fff"'+sk(2)+'/><path d="M20 13v7l5 3" fill="none"'+sk(2.2)+'/>')
+];
+var PH={
+ pengkajian:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFE08A"/><rect x="23" y="15" width="34" height="48" rx="5" fill="#fff"'+sk(2.4)+'/><rect x="31" y="11" width="18" height="9" rx="3" fill="#FF8FB8"'+sk(2.2)+'/><path d="M31 32h18M31 40h18M31 48h10" fill="none" stroke="#F1B0C6" stroke-width="3" stroke-linecap="round"/>'+heartP(48,54,.6,'#FF7FAE')),
+ metode:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFD9E5"/><path d="M40 22C32 18 22 18 15 21V58C22 55 32 55 40 59Z" fill="#fff"'+sk(2.2)+'/><path d="M40 22C48 18 58 18 65 21V58C58 55 48 55 40 59Z" fill="#FFF1B8"'+sk(2.2)+'/><path d="M40 22V59" fill="none"'+sk(2.2)+'/>'+heartP(52,38,.7,'#FF7FAE')+'<path d="M21 32h12M21 39h12M21 46h8" fill="none" stroke="#F1B0C6" stroke-width="2.4" stroke-linecap="round"/>'),
+ skrining:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFE08A"/><path d="M40 13L62 21V39C62 52 52 60 40 66C28 60 18 52 18 39V21Z" fill="#fff"'+sk(2.4)+'/><path d="M29 40l8 8 15-17" fill="none" stroke="#2E9E62" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'),
+ konseling:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFD9E5"/><path d="M14 20a8 8 0 0 1 8-8h22a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8H30l-9 8v-8h-1a8 8 0 0 1-6-8Z" fill="#FF8FB8"'+sk(2.2)+'/><path d="M32 40a8 8 0 0 1 8-8h22a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8h-1v8l-9-8H40a8 8 0 0 1-8-8Z" fill="#fff"'+sk(2.2)+'/><g fill="'+ST+'"><circle cx="43" cy="47" r="2.3"/><circle cx="51" cy="47" r="2.3"/><circle cx="59" cy="47" r="2.3"/></g>'),
+ evaluasi:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFD9E5"/><polygon points="'+starPts(40,41,26,12)+'" fill="#FFE08A"'+sk(2.4)+'/>'+heartP(40,41,.55,'#FF7FAE')),
+ pemilik:svg('0 0 80 80','<circle cx="40" cy="40" r="38" fill="#FFE08A"/><rect x="18" y="22" width="44" height="36" rx="6" fill="#fff"'+sk(2.4)+'/><rect x="26" y="38" width="6" height="14" rx="2" fill="#FF8FB8"/><rect x="37" y="30" width="6" height="22" rx="2" fill="#A8326A"/><rect x="48" y="34" width="6" height="18" rx="2" fill="#2E9E62"/>')
+};
+var HERO=svg('0 0 320 300',
+ '<circle cx="165" cy="150" r="125" fill="#FFE08A" opacity=".55"/><circle cx="252" cy="68" r="34" fill="#FFB8D1"/><circle cx="60" cy="240" r="26" fill="#FFB8D1" opacity=".85"/>'+
+ heartP(54,96,.9,'#FF7FAE')+heartP(268,176,.7,'#FF7FAE')+heartP(104,42,.55,'#FFB8D1')+
+ '<path d="M22 196c20-12 34 0 34 0s-14 16-34 0Z" fill="#9BD7A8"/><path d="M290 232c-16-10-30 2-30 2s14 14 30-2Z" fill="#9BD7A8"/>'+
+ '<g fill="#fff"><circle cx="86" cy="150" r="3"/><circle cx="238" cy="120" r="3.5"/><circle cx="212" cy="40" r="2.5"/></g>'+
+ '<path d="M72 294c0-72 34-100 88-100s88 28 88 100Z" fill="#E85D93"/>'+
+ '<path d="M128 198c8 14 22 16 32 16s24-2 32-16" fill="none" stroke="#FFD0E1" stroke-width="5" stroke-linecap="round"/>'+
+ '<circle cx="160" cy="128" r="38" fill="#4A2A3A"/><circle cx="160" cy="88" r="15" fill="#4A2A3A"/>'+
+ '<rect x="148" y="160" width="24" height="30" rx="10" fill="#E9AE8A"/>'+
+ '<ellipse cx="160" cy="138" rx="30" ry="33" fill="#F1B896"/>'+
+ '<path d="M128 132c2-26 54-32 64 0-12-14-42-18-64 0Z" fill="#4A2A3A"/>'+
+ '<path d="M145 141q5 5 10 0M165 141q5 5 10 0" fill="none" stroke="#4A2A3A" stroke-width="2.4" stroke-linecap="round"/>'+
+ '<circle cx="142" cy="151" r="5" fill="#FF9DBF" opacity=".75"/><circle cx="178" cy="151" r="5" fill="#FF9DBF" opacity=".75"/>'+
+ '<path d="M154 154q6 6 12 0" fill="none" stroke="#B5435F" stroke-width="2.4" stroke-linecap="round"/>'+
+ '<g transform="rotate(-16 178 233)"><rect x="132" y="210" width="92" height="46" rx="23" fill="#FFF1B8" stroke="#E8C766" stroke-width="3"/><path d="M146 224q22 14 60 0" fill="none" stroke="#E8C766" stroke-width="2.5"/></g>'+
+ '<circle cx="216" cy="214" r="16" fill="#F6C9A8"/><path d="M204 208q4-9 13-8" fill="none" stroke="#6B3E2E" stroke-width="3" stroke-linecap="round"/>'+
+ '<path d="M208 216q3 3 6 0M218 216q3 3 6 0" fill="none" stroke="#6B3E2E" stroke-width="2" stroke-linecap="round"/><circle cx="208" cy="223" r="3" fill="#FF9DBF" opacity=".8"/><circle cx="224" cy="223" r="3" fill="#FF9DBF" opacity=".8"/>'+
+ '<path d="M100 234C130 272 192 274 232 240" fill="none" stroke="#C94480" stroke-width="24" stroke-linecap="round"/><path d="M100 234C130 272 192 274 232 240" fill="none" stroke="#F26FA3" stroke-width="18" stroke-linecap="round"/><circle cx="238" cy="236" r="10" fill="#F1B896"/>'
+);
+
+/* ---------- helpers ---------- */
+function lab(k,v){var o=(OPT[k]||[]).filter(function(x){return x[0]===v})[0];return o?o[1]:(v||'')}
+function labs(k,arr){arr=arr||[];if(arr.indexOf('none')>-1)return lab(k,'none');return arr.map(function(v){return lab(k,v)}).join(', ')}
+function days(){var n=parseFloat(S.lamaN);if(isNaN(n)||n<0||S.lamaN==='')return null;var f={hari:1,minggu:7,bulan:30}[S.lamaU]||7;return Math.round(n*f)}
+function fmtDur(d){if(d==null)return '-';if(d<=14)return d+' hari';if(d<70)return Math.round(d/7)+' minggu';return Math.round(d/30)+' bulan'}
+function complete(){return days()!==null&&!!S.asi}
+function menyusui(){return S.asi==='eksklusif'||S.asi==='sebagian'}
+function toast(t){var e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){e.hidden=true},2800)}
+function copyText(text,node){
+  function fb(){
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=text;
+      ta.style.position='fixed';
+      ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      toast('Ringkasan disalin');
+    }catch(e){
+      if(node){
+        var r=document.createRange();r.selectNodeContents(node);
+        var s=window.getSelection();s.removeAllRanges();s.addRange(r);
+      }
+      toast('Teks dipilih. Tekan Ctrl+C untuk menyalin.');
+    }
+  }
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){toast('Ringkasan disalin')},fb);
+    } else { fb(); }
+  }catch(e){fb()}
+}
+
+/* ---------- evaluation ---------- */
+function evaluate(){
+  var d=days(),age=parseInt(S.usia,10)||0,mn=menyusui(),R={};
+  ['aud','imp','pop','dmpa','kon','chc'].forEach(function(k){R[k]={cat:1,why:[]}});
+  function bump(k,c,t){if(c>R[k].cat)R[k].cat=c;if(c>1)R[k].why.push({c:c,t:t})}
+  var vte=[];
+  if(S.jenisSalin==='sc')vte.push('seksio sesarea');
+  if(kAll().indexOf('pph')>-1)vte.push('perdarahan postpartum');
+  if(kAll().indexOf('hipertensi')>-1)vte.push('preeklamsia atau hipertensi kehamilan');
+  if(smoker())vte.push('merokok');
+  if(age>=35)vte.push('usia 35 tahun atau lebih');
+  if(mn){
+    if(d<42)bump('chc',4,'Menyusui dan kurang dari 6 minggu pascasalin: risiko bekuan darah');
+    else if(d<180)bump('chc',3,'Menyusui 6 minggu sampai 6 bulan: dapat menurunkan produksi ASI');
+    else bump('chc',2,'Menyusui lebih dari 6 bulan: manfaat umumnya lebih besar dari risiko');
+    if(d<42)['pop','dmpa','imp'].forEach(function(k){bump(k,2,'Menyusui dan kurang dari 6 minggu pascasalin')});
+  }else{
+    if(d<21)bump('chc',4,'Kurang dari 21 hari pascasalin: risiko bekuan darah');
+    else if(d<=42){if(vte.length)bump('chc',3,'21 sampai 42 hari pascasalin dengan faktor risiko: '+vte.join(', '));else bump('chc',2,'21 sampai 42 hari pascasalin tanpa faktor risiko tambahan')}
+  }
+  if(d>2&&d<28)bump('aud',3,'48 jam sampai 4 minggu pascasalin: risiko alat terlepas tinggi, sebaiknya ditunda');
+  Object.keys(COND).forEach(function(key){
+    var c=COND[key][S[key]];
+    if(c)Object.keys(c.c).forEach(function(m){bump(m,c.c[m],c.n)});
+  });
+  var ob0=obatSet();
+  if(ob0.some(function(o){return o==='rifampisin'||o==='antikonvulsan'})){
+    var on=(ob0.indexOf('rifampisin')>-1&&ob0.indexOf('antikonvulsan')>-1)?'Rifampisin dan obat epilepsi':(ob0.indexOf('rifampisin')>-1?'Rifampisin':'Obat epilepsi');
+    Object.keys(DRUG.c).forEach(function(m){bump(m,DRUG.c[m],on+' menurunkan efektivitas hormonal')});
+  }
+  if(kAll().indexOf('infeksi')>-1)bump('aud',4,'Infeksi nifas: pemasangan AKDR tidak boleh');
+  if(smoker()){
+    if(age>=35)bump('chc',S.rokok==='berat'?4:3,S.rokok==='berat'?'Merokok 15 batang atau lebih per hari, usia 35 tahun atau lebih':'Merokok usia 35 tahun atau lebih');
+    else bump('chc',2,'Merokok pada usia kurang dari 35 tahun');
+  }
+  var why=[];
+  if(!mn)why.push('Ibu tidak menyusui');
+  else{
+    if(S.asi!=='eksklusif')why.push('Bayi belum mendapat ASI saja');
+    if(S.frek!=='sering')why.push(S.frek?'Frekuensi menyusui kurang dari 8 kali per 24 jam':'Frekuensi menyusui belum diisi');
+  }
+  if(d>=180)why.push('Bayi sudah berusia 6 bulan atau lebih');
+  if(S.haid==='sudah')why.push('Haid sudah kembali');
+  else if(!S.haid)why.push('Status haid belum diisi');
+  R.mal={ok:why.length===0,why:why.length?why:['Memenuhi ketiga syarat MAL']};
+  var al=[];
+  REFER.forEach(function(k){if(S[k]&&S[k]!=='tidak')al.push(COND[k][S[k]].n)});
+  if(S.diabetes==='komplikasi')al.push(COND.diabetes.komplikasi.n);
+  if(S.hipertensi==='berat')al.push(COND.hipertensi.berat.n);
+  if(kAll().indexOf('infeksi')>-1)al.push('Infeksi nifas');
+  var seen={};al=al.filter(function(x){if(seen[x])return false;seen[x]=1;return true});
+  var seg=d<=2?0:d<28?1:d<42?2:d<180?3:4;
+  return {R:R,d:d,mn:mn,alerts:al,seg:seg};
+}
+function obsText(){return 'Para '+(S.P||'-')+', '+(S.abortus==='pernah'?'pernah keguguran '+(S.A||'-')+' kali':(S.abortus==='tidak'?'tidak pernah keguguran':'riwayat keguguran belum diisi'))+', anak hidup '+(S.anak||'-')}
+function healthScreen(){
+  var miss=[];
+  if(days()===null)miss.push('Lama sejak persalinan');
+  if(!S.asi)miss.push('Pemberian ASI');
+  if(miss.length)return {miss:miss};
+  var E=evaluate(),f=[],age=parseInt(S.usia,10)||0;
+  if(age>=35)f.push({c:'c3',t:'Usia ibu 35 tahun atau lebih'});
+  else if(age>0&&age<20)f.push({c:'c3',t:'Usia ibu kurang dari 20 tahun'});
+  if(S.jenisSalin==='sc')f.push({c:'c2',t:'Persalinan seksio sesarea (menambah risiko bekuan darah)'});
+  [['kHamil','kehamilan'],['kSalin','persalinan'],['kNifas','nifas']].forEach(function(g){(S[g[0]]||[]).forEach(function(key){if(key==='none')return;f.push({c:key==='infeksi'?'c4':'c3',t:lab(g[0],key)+' (masa '+g[1]+')'})})});
+  if(S.kondisi==='keluhan')f.push({c:'c3',t:'Ibu melaporkan keluhan'+(S.kondisiCat?': '+S.kondisiCat:'')+(S.keluhanSejak?' ('+lab('keluhanSejak',S.keluhanSejak).toLowerCase()+')':'')});
+  if(S.abortus==='pernah')f.push({c:'c2',t:'Pernah keguguran'+(S.A?' ('+S.A+' kali)':'')});
+  Object.keys(COND).forEach(function(key){var c=COND[key][S[key]];if(c)f.push({c:E.alerts.indexOf(c.n)>-1?'c4':'c3',t:c.n})});
+  if(smoker())f.push({c:'c3',t:'Merokok '+(S.rokok==='berat'?'15 batang atau lebih per hari':'kurang dari 15 batang per hari')});
+  var ob=obatSet();
+  if(ob.indexOf('rifampisin')>-1)f.push({c:'c3',t:'Minum rifampisin (menurunkan efektivitas KB hormonal)'});
+  if(ob.indexOf('antikonvulsan')>-1)f.push({c:'c3',t:'Minum obat epilepsi (menurunkan efektivitas KB hormonal)'});
+  return {f:f,E:E};
+}
+function status(E,key){
+  if(key==='mal')return E.R.mal.ok?{cls:'c1',txt:'Memenuhi syarat',cat:null,sym:'✓'}:{cls:'cx',txt:'Belum memenuhi syarat',cat:null,sym:'–'};
+  var c=E.R[key].cat;return {cls:'c'+c,txt:'Kategori '+c,cat:c,sym:String(c)};
+}
+function whyList(E,key){
+  if(key==='mal')return E.R.mal.why;
+  var w=E.R[key].why.slice().sort(function(a,b){return b.c-a.c}).map(function(x){return x.t+' (kategori '+x.c+')'});
+  return w.length?w:['Tidak ada hambatan medis dari data yang diisi'];
+}
+
+/* ---------- views ---------- */
+var SEGS=[
+ ['0 sampai 48 jam','AKDR tembaga pascasalin dapat dipasang'],
+ ['2 hari sampai 4 minggu','Pemasangan AKDR sebaiknya ditunda'],
+ ['4 sampai 6 minggu','AKDR boleh; estrogen tetap tidak boleh'],
+ ['6 minggu sampai 6 bulan','MAL masih berlaku; estrogen tidak dianjurkan saat menyusui'],
+ ['Lebih dari 6 bulan','MAL berakhir; progestin tanpa pembatasan waktu']
+];
+function tlHTML(seg){return '<div class="tl">'+SEGS.map(function(s,i){return '<div'+(i===seg?' class="here" aria-current="step"':'')+'>'+(i===seg?'<em>Posisi ibu</em>':'')+'<b>'+s[0]+'</b><span>'+s[1]+'</span></div>'}).join('')+'</div>'}
+
+function wheelHTML(E){
+  var n=METHODS.length,cx=160,cy=160,r1=60,r2=148,rm=(r1+r2)/2+2,out='';
+  function p(r,a){return (cx+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1)}
+  METHODS.forEach(function(m,i){
+    var a0=-Math.PI/2+i*2*Math.PI/n,a1=-Math.PI/2+(i+1)*2*Math.PI/n,am=(a0+a1)/2,st=status(E,m.key);
+    out+='<path class="wd '+st.cls+'" d="M'+p(r2,a0)+' A'+r2+','+r2+' 0 0 1 '+p(r2,a1)+' L'+p(r1,a1)+' A'+r1+','+r1+' 0 0 0 '+p(r1,a0)+' Z"/>';
+    var x=cx+rm*Math.cos(am),y=cy+rm*Math.sin(am);
+    out+='<text x="'+x.toFixed(1)+'" y="'+(y-14).toFixed(1)+'" font-size="10.5" font-weight="700">'+esc(m.w[0])+'</text>';
+    if(m.w[1])out+='<text x="'+x.toFixed(1)+'" y="'+(y-2).toFixed(1)+'" font-size="10.5" font-weight="700">'+esc(m.w[1])+'</text>';
+    out+='<text x="'+x.toFixed(1)+'" y="'+(y+(m.w[1]?20:12)).toFixed(1)+'" font-size="20" font-weight="800">'+st.sym+'</text>';
+  });
+  out+='<circle class="cc" cx="'+cx+'" cy="'+cy+'" r="'+(r1-4)+'"/><text class="ct" x="'+cx+'" y="'+(cy-2)+'" font-size="13" font-weight="800">Kategori</text><text class="ct" x="'+cx+'" y="'+(cy+14)+'" font-size="13" font-weight="800">MEC</text>';
+  var alt='Diagram kelayakan: '+METHODS.map(function(m){return m.n+' '+status(E,m.key).txt}).join('; ');
+  return '<svg class="wheel" viewBox="0 0 320 320" role="img" aria-label="'+esc(alt)+'">'+out+'</svg>';
+}
+
+function sampleCTA(){return '<div class="ctas"><a class="btn" href="#pengkajian">Buka Pengkajian Ibu</a><button class="btn ghost" type="button" data-act="sample">Muat contoh data</button></div>'}
+
+function renderSkrining(){
+  var el=$('#skr');
+  if(!complete()){el.innerHTML='<div class="card"><h3>Data pengkajian belum lengkap</h3><p class="sub">Skrining memerlukan lama sejak persalinan dan status pemberian ASI. Isi di menu Pengkajian Ibu, atau lihat contoh hasilnya dulu.</p>'+sampleCTA()+'</div>';return}
+  var E=evaluate(),m=MBY[S.pilihan],h='';
+  h+='<div class="card"><h3>Dasar penilaian</h3><div class="facts">'+
+   '<div class="fact"><p class="sub">Usia nifas</p><h3>'+fmtDur(E.d)+'</h3></div>'+
+   '<div class="fact"><p class="sub">Status menyusui</p><h3>'+esc(lab('asi',S.asi))+'</h3></div>'+
+   '<div class="fact"><p class="sub">Jenis persalinan</p><h3>'+esc(lab('jenisSalin',S.jenisSalin)||'Belum diisi')+'</h3></div>'+
+   '<div class="fact"><p class="sub">Usia ibu</p><h3>'+(S.usia?esc(S.usia)+' tahun':'Belum diisi')+'</h3></div></div></div>';
+  if(E.alerts.length)h+='<div class="alert"><strong>Perlu penilaian dokter.</strong> Ditemukan: '+E.alerts.map(esc).join(', ')+'. Konsultasikan atau rujuk sebelum menetapkan metode, terutama untuk metode berkategori 3 atau 4.</div>';
+  if(m){
+    var st=status(E,m.key),blocked=m.key==='mal'?!E.R.mal.ok:st.cat===4,careful=!blocked&&st.cat===3;
+    h+='<div class="card" style="border:2px solid var(--accent)"><div class="rt">'+mico(m.key)+'<div><span class="eyebrow">Metode yang dipilih ibu</span><h3>'+esc(m.full)+'</h3></div></div>'+
+     '<div class="row-btns"><span class="chip '+st.cls+'">'+st.txt+'</span><span>'+(m.key==='mal'?(E.R.mal.ok?'Memenuhi tiga syarat MAL':'Belum memenuhi syarat MAL'):CATTXT[st.cat])+'</span></div>'+
+     '<ul class="l">'+whyList(E,m.key).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>';
+    if(blocked)h+='<div class="alert"><strong>Metode ini tidak dapat dilanjutkan.</strong> Berdasarkan kondisi ibu saat ini, metode ini tidak boleh dipakai atau belum memenuhi syarat. Pilih metode lain pada Konseling KB.</div>';
+    else if(careful)h+='<div class="alert warn"><strong>Perlu pertimbangan khusus.</strong> Umumnya tidak dianjurkan. Hanya dipilih bila metode lain tidak tersedia atau tidak dapat diterima, dengan persetujuan dan pengawasan dokter.</div>';
+    else h+='<div class="alert ok"><strong>Dapat dilanjutkan.</strong> Metode ini sesuai dengan data pengkajian ibu.</div>';
+    h+='</div>';
+  }
+  h+='<div class="card"><h3>Diagram kelayakan seluruh metode</h3><p class="sub">Setiap irisan menunjukkan satu metode. Warna dan angka menunjukkan kategori MEC untuk ibu ini.</p>'+wheelHTML(E)+
+   '<div class="legend">'+[1,2,3,4].map(function(c){return '<div><span class="chip c'+c+'">Kategori '+c+'</span>'+CATTXT[c]+'</div>'}).join('')+'</div></div>';
+  h+='<div class="tw wide"><table><thead><tr><th>Metode</th><th>Hasil</th><th>Dasar penilaian</th></tr></thead><tbody>'+METHODS.map(function(x){
+    var s2=status(E,x.key);
+    return '<tr'+(m&&x.key===m.key?' style="background:var(--accent-soft)"':'')+'><td><strong>'+esc(x.full)+'</strong>'+(m&&x.key===m.key?'<br><span class="tag">Dipilih ibu</span>':'')+'</td><td><span class="chip '+s2.cls+'">'+s2.txt+'</span></td><td><ul>'+whyList(E,x.key).map(function(y){return '<li>'+esc(y)+'</li>'}).join('')+'</ul></td></tr>';
+  }).join('')+'</tbody></table></div>';
+  h+='<div class="stepnav"><a class="btn ghost" href="#pengkajian">Pengkajian Ibu</a><a class="btn" href="#konseling">Lanjut ke konseling</a></div>';
+  el.innerHTML=h;
+}
+
+function rankMethods(E){
+  /* Urutan didasarkan pada kelayakan medis (hasil pengkajian dan skrining). Preferensi hanya pertimbangan tambahan kecil. Metode yang dipilih sebelumnya tidak dipakai. */
+  var c=S.cemas||[];
+  var list=METHODS.map(function(m){
+    var st=status(E,m.key),grp,score=0,tags=[];
+    if(m.key==='mal')grp=E.R.mal.ok?'ok':'no';else grp=st.cat<=2?'ok':st.cat===3?'care':'no';
+    if(grp==='ok'){
+      score=(m.key==='mal'?14:(st.cat===1?30:20));
+      if(m.panjang)score+=3;
+      if(S.minat.indexOf(m.key)>-1){score+=3;tags.push('Diminati ibu')}
+      if(S.hormon==='non'&&!m.hormonal){score+=3;tags.push('Sesuai pilihan nonhormonal')}
+      if(S.hormon==='hormonal'&&m.hormonal){score+=3;tags.push('Sesuai pilihan hormonal')}
+      if((S.jarak==='3-5'||S.jarak==='>5'||S.jarak==='none'||S.tujuan==='berhenti')&&m.panjang){score+=3;tags.push('Perlindungan jangka panjang')}
+      if(c.indexOf('haid')>-1){var pen={imp:-2,dmpa:-2,pop:-2,aud:-1}[m.key];if(pen){score+=pen;tags.push('Dapat mengubah pola haid')}}
+      if(c.indexOf('berat')>-1&&m.key==='dmpa'){score-=2;tags.push('Berat badan dapat naik')}
+      if(c.indexOf('nyeri')>-1&&(m.key==='aud'||m.key==='imp')){score-=2;tags.push('Perlu tindakan pemasangan')}
+      if(c.indexOf('alat')>-1&&(m.key==='dmpa'||m.key==='imp'||m.key==='aud')){score-=2;tags.push('Memerlukan jarum atau alat')}
+      if(S.pasangan==='tidak'&&m.key==='kon'){score-=3;tags.push('Bergantung dukungan suami')}
+      if(m.key==='mal')tags.push('Berlaku maksimal 6 bulan');
+    }
+    return {m:m,st:st,grp:grp,score:score,tags:tags};
+  });
+  list.sort(function(a,b){return b.score-a.score});
+  return list;
+}
+
+function renderRek(){
+  var el=$('#rek');
+  if(!complete()){el.innerHTML='<p class="sub">Rekomendasi muncul setelah pengkajian diisi. Hanya lama sejak persalinan dan status ASI yang wajib.</p>'+sampleCTA();return}
+  var E=evaluate(),rk=rankMethods(E),h='';
+  if(E.alerts.length)h+='<div class="alert"><strong>Perlu penilaian dokter.</strong> '+E.alerts.map(esc).join(', ')+'.</div>';
+  function pickBtn(r){var sel=S.pilihan===r.m.key;return '<button class="btn small'+(sel?'':' ghost')+'" type="button" data-pick="'+r.m.key+'">'+(sel?'Terpilih':'Pilih metode ini')+'</button>'}
+  function meta(r){return '<div class="meta"><span class="chip '+r.st.cls+'">'+r.st.txt+'</span><span class="tag">'+esc(r.m.h)+'</span>'+r.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('')+'</div>'}
+  function card(r,pick,cls,badge){
+    var sel=S.pilihan===r.m.key;
+    return '<div class="rec '+cls+(sel?' sel':'')+'"><div>'+(badge?'<span class="badge-alt">'+badge+'</span>':'')+'<div class="rt">'+mico(r.m.key)+'<h3>'+esc(r.m.full)+'</h3></div>'+meta(r)+'<p>'+esc(r.m.ring)+'</p></div>'+(pick?pickBtn(r):'')+'</div>';
+  }
+  var ok=rk.filter(function(r){return r.grp==='ok'}),care=rk.filter(function(r){return r.grp==='care'}),no=rk.filter(function(r){return r.grp==='no'});
+  var top=ok[0];
+  h+='<p class="sub">Urutan disusun dari kondisi kesehatan Ibu. Tekan <strong>Pilih metode ini</strong> pada metode yang Ibu inginkan.</p>';
+  if(top){
+    var why=[];
+    why.push(top.m.key==='mal'?'Memenuhi tiga syarat MAL (bayi kurang dari 6 bulan, ibu belum haid, bayi hanya mendapat ASI)':'Hasil skrining WHO MEC: kategori '+top.st.cat+'. '+CATTXT[top.st.cat]);
+    why.push('Sesuai dengan usia nifas ibu ('+fmtDur(E.d)+') dan status '+(E.mn?'menyusui. '+top.m.asi:'tidak menyusui.'));
+    if(top.m.key!=='mal')whyList(E,top.m.key).forEach(function(x){why.push(x)});
+    top.tags.forEach(function(x){why.push('Pertimbangan tambahan: '+x)});
+    var saran=[top.m.w2].concat(top.m.edu.slice(0,2)).concat(['Tindak lanjut: '+top.m.fu]);
+    recTop=top.m.key;
+    if(recClosed===top.m.key){
+      h+='<div class="rec-mini"><span>&#9733; Rekomendasi utama: <strong>'+esc(top.m.full)+'</strong></span><span class="row-btns">'+pickBtn(top)+'<button class="btn ghost small" type="button" data-act="recopen">Tampilkan</button></span></div>';
+    }else{
+      h+='<div class="rec top"><div class="rec-bar"><span class="badge-top">&#9733; Rekomendasi utama</span><button class="rec-x" type="button" data-act="recclose" aria-label="Tutup rekomendasi utama">&#10005; Tutup</button></div><div><div class="rt">'+mico(top.m.key)+'<h3>'+esc(top.m.full)+'</h3></div>'+meta(top)+'<p>'+esc(top.m.ring)+'</p></div>'+
+        '<details class="why-det"><summary>Lihat alasan dan saran penggunaan</summary>'+
+        '<div class="why-box"><h4>Mengapa paling sesuai untuk ibu ini</h4><ul>'+why.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'+
+        '<div class="why-box"><h4>Saran penggunaan</h4><ul>'+saran.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div></details>'+
+        '<div class="row-btns">'+pickBtn(top)+'</div></div>';
+    }
+    if(S.pilihan&&S.pilihan!==top.m.key&&MBY[S.pilihan])h+='<div class="notice">Metode yang Ibu pilih (<strong>'+esc(MBY[S.pilihan].full)+'</strong>) berbeda dari rekomendasi utama. Bahas alasannya bersama bidan sebelum memutuskan.</div>';
+  }else{
+    h+='<div class="alert warn"><strong>Belum ada metode yang sepenuhnya sesuai.</strong> Tidak ada metode berkategori 1 atau 2 untuk data ini. Konsultasikan dengan dokter.</div>';
+  }
+  if(ok.length>1)h+='<div class="grp-h">Alternatif lain yang juga sesuai</div><div class="recs">'+ok.slice(1).map(function(r){return card(r,true,'alt','Alternatif')}).join('')+'</div>';
+  if(care.length)h+='<div class="grp-h">Perlu pertimbangan khusus (kategori 3)</div><div class="recs">'+care.map(function(r){return card(r,true,'alt','Pertimbangan khusus')}).join('')+'</div><p class="sub">Kategori 3 hanya dipilih bila metode lain tidak tersedia atau tidak dapat diterima ibu, dengan persetujuan dan pengawasan dokter.</p>';
+  if(no.length)h+='<div class="grp-h">Tidak boleh atau belum memenuhi syarat</div><div class="recs">'+no.map(function(r){return card(r,false,'no','Tidak dianjurkan')}).join('')+'</div>';
+  if(S.tujuan==='berhenti'||S.jarak==='none')h+='<div class="notice">Ibu tidak ingin hamil lagi. Selain tujuh metode di atas, kontrasepsi mantap dapat dibicarakan dengan dokter.</div>';
+  el.innerHTML=h;
+}
+
+function renderMetode(){
+  var m=MBY[curM];
+  $('#mtabs').innerHTML=METHODS.map(function(x){
+    return '<button class="mtab" type="button" role="tab" aria-selected="'+(x.key===curM)+'" data-m="'+x.key+'">'+mico(x.key)+'<b>'+esc(x.full)+'</b>'+'</button>';
+  }).join('');
+  var h='<header>'+mico(curM,'lg')+'<div class="row"><span class="tag">'+esc(m.h)+'</span><span class="tag">'+esc(m.lama)+'</span></div><h2>'+esc(m.full)+'</h2><p class="sub">'+esc(m.ring)+'</p></header>';
+  h+='<dl class="dl"><dt>Pengertian</dt><dd>'+esc(m.p)+'</dd><dt>Cara kerja</dt><dd>'+esc(m.c)+'</dd><dt>Efektivitas</dt><dd>'+esc(m.ef)+'</dd><dt>Waktu penggunaan</dt><dd>'+esc(m.w2)+'</dd><dt>Pengaruh pada ASI</dt><dd>'+esc(m.asi)+'</dd></dl>';
+  h+='<div class="box"><h3>'+esc(m.kh.t)+'</h3><ul class="l">'+m.kh.l.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
+  h+='<div class="pc"><div><h3>Kelebihan</h3><ul class="l">'+m.kel.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div><div><h3>Kekurangan</h3><ul class="l">'+m.kek.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div><div><h3>Efek samping</h3><ul class="l">'+m.es.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div></div>';
+  h+='<div class="stepnav"><a class="btn ghost" href="#beranda">Beranda</a><a class="btn" href="#pengkajian">Mulai pengkajian</a></div>';
+  $('#mdet').innerHTML=h;
+}
+
+/* summary */
+function summaryData(){
+  var d=days(),E=complete()?evaluate():null,secs=[];
+  secs.push({h:'Data registrasi',l:[
+    'No. telepon: '+(S.telp||'-'),
+    'Pendidikan terakhir: '+(lab('pend',S.pend)||'-'),
+    'Pekerjaan: '+((S.kerja==='lain'?(S.kerjaCat||'Lainnya'):lab('kerja',S.kerja))||'-'),
+    'Alamat: '+(S.alamat||'-')]});
+  secs.push({h:'Identitas',l:[
+    'Ibu: '+(S.nama||'-')+(S.usia?', '+S.usia+' tahun':''),
+    'Suami: '+(S.suami||'-')+(S.usiaSuami?', '+S.usiaSuami+' tahun':''),
+    'Riwayat obstetri: '+obsText(),
+    'Kontrasepsi sebelumnya: '+(labs('kontLalu',S.kontLalu)||'-')+(S.kontLaluCat?' ('+S.kontLaluCat+')':'')]});
+  secs.push({h:'Kondisi nifas',l:[
+    'Lama sejak persalinan: '+fmtDur(d)+(S.jenisSalin?', '+lab('jenisSalin',S.jenisSalin):''),
+    'Kondisi saat ini: '+(lab('kondisi',S.kondisi)||'-')+(S.kondisiCat?' ('+S.kondisiCat+')':'')+(S.kondisi==='keluhan'&&S.keluhanSejak?', dirasakan '+lab('keluhanSejak',S.keluhanSejak).toLowerCase():''),
+    'Komplikasi masa kehamilan: '+(labs('kHamil',S.kHamil)||'-'),
+    'Komplikasi masa persalinan: '+(labs('kSalin',S.kSalin)||'-'),
+    'Komplikasi masa nifas: '+(labs('kNifas',S.kNifas)||'-')]});
+  secs.push({h:'Status menyusui',l:[
+    'Pemberian ASI: '+(lab('asi',S.asi)||'-'),
+    'Frekuensi menyusui: '+(lab('frek',S.frek)||'-'),
+    'Produksi ASI: '+(lab('produksi',S.produksi)||'-'),
+    'Haid: '+(lab('haid',S.haid)||'-')]});
+  var hl=[];
+  Object.keys(HNAME).forEach(function(k){if(S[k]&&S[k]!=='tidak')hl.push(HNAME[k]+': '+lab(k,S[k]))});
+  if(S.obatAda==='ya'){var ot=obatSet();hl.push('Obat yang dikonsumsi: '+(S.obatNama||'nama belum diisi')+(ot.length?' (termasuk '+labs('obat',ot)+')':''))}
+  secs.push({h:'Riwayat kesehatan',l:hl.length?hl:['Tidak ada riwayat penyakit yang dilaporkan']});
+  if(E)secs.push({h:'Hasil skrining kelayakan (WHO MEC)',l:METHODS.map(function(m){return m.full+': '+status(E,m.key).txt})});
+  else secs.push({h:'Hasil skrining kelayakan (WHO MEC)',l:['Belum dapat dihitung. Lengkapi pengkajian.']});
+  var pl=[];
+  if(S.tujuan)pl.push('Tujuan: '+lab('tujuan',S.tujuan));
+  if(S.jarak)pl.push('Rencana jarak kehamilan: '+lab('jarak',S.jarak));
+  if(S.minat.length)pl.push('Metode diminati: '+S.minat.map(function(k){return MBY[k].full}).join(', '));
+  if(S.hormon)pl.push('Preferensi: '+lab('hormon',S.hormon));
+  if((S.cemas||[]).length)pl.push('Kekhawatiran: '+labs('cemas',S.cemas));
+  if(S.pasangan)pl.push('Dukungan suami: '+lab('pasangan',S.pasangan));
+  secs.push({h:'Kebutuhan dan preferensi',l:pl.length?pl:['Belum diisi']});
+  var m=MBY[S.pilihan];
+  var dl=['Metode yang dipilih: '+(m?m.full:'Belum dipilih')];
+  if(m&&E){var st=status(E,m.key);dl.push('Hasil skrining metode ini: '+st.txt)}
+  dl.push('Tanggal pengisian: '+(S.tanggal||'-'));
+  secs.push({h:'Pilihan metode KB',l:dl});
+  secs.push({h:'Pertanyaan ibu',l:(S.qa&&S.qa.length)?S.qa.map(function(x){return x.q}):['Tidak ada pertanyaan']});
+  secs.push({h:'Kesan dan pesan untuk bidan',l:['Bidan yang melayani: '+(S.bidan||'-'),'Kesan: '+(S.kesan||'-'),'Pesan: '+(S.saran||'-')]});
+  secs.push({h:'Tindak lanjut',l:[m?m.fu:'Tetapkan metode bersama bidan.',FU_GEN]});
+  return secs;
+}
+function summaryText(){return 'RINGKASAN KONSELING KB NIFAS DAN MENYUSUI — NIFASIA\n\n'+summaryData().map(function(s){return s.h.toUpperCase()+'\n'+s.l.map(function(x){return '- '+x}).join('\n')}).join('\n\n')}
+var SI={'Data registrasi':'&#128222;','Identitas':'&#128100;','Kondisi nifas':'&#127800;','Status menyusui':'&#127868;','Riwayat kesehatan':'&#129658;','Hasil skrining kelayakan (WHO MEC)':'&#128737;&#65039;','Kebutuhan dan preferensi':'&#128151;','Pilihan metode KB':'&#127919;','Keputusan':'&#127919;','Pertanyaan ibu':'&#128172;','Kesan dan pesan untuk bidan':'&#128140;','Kesan, saran, dan pesan untuk bidan':'&#128140;','Tindak lanjut':'&#128197;'};
+function kvHTML(h,x){
+  var i=x.indexOf(': ');
+  if(h==='Pertanyaan ibu'||i<1||i>60)return '<div class="kv"><span class="v">'+esc(x)+'</span></div>';
+  var k=x.slice(0,i),v=x.slice(i+2),m=/^Kategori (\d)$/.exec(v);
+  if(h.indexOf('Hasil skrining')===0&&(m||/syarat$/.test(v))){
+    var c=m?'c'+m[1]:(v==='Memenuhi syarat'?'c1':'cx');
+    return '<div class="kv chiprow"><span class="k">'+esc(k)+'</span><span class="chip '+c+'">'+esc(v)+'</span></div>';
+  }
+  return '<div class="kv"><span class="k">'+esc(k)+'</span><span class="v">'+esc(v)+'</span></div>';
+}
+function summaryHTML(secs){return (secs||[]).map(function(s){return '<section class="sec"><div class="sec-h"><span class="sec-i" aria-hidden="true">'+(SI[s.h]||'&#10024;')+'</span><h3>'+esc(s.h)+'</h3></div>'+(s.l||[]).map(function(x){return kvHTML(s.h,x)}).join('')+'</section>'}).join('')}
+function summaryHero(){
+  var d=days(),m=MBY[S.pilihan],E=complete()?evaluate():null,st=(m&&E)?status(E,m.key):null;
+  var orn=svg('0 0 120 90','<circle cx="70" cy="40" r="34" fill="#FFE08A" opacity=".7"/>'+heartP(30,30,1.1,'#FF7FAE')+heartP(92,62,.8,'#FFB8D1')+heartP(100,16,.55,'#FF7FAE')+'<polygon points="'+starPts(20,72,9,4)+'" fill="#FFE08A"/>','orn');
+  var chips='<span class="chip c2">Nifas: '+esc(fmtDur(d))+'</span>'+(S.asi?'<span class="chip c1">'+esc(lab('asi',S.asi))+'</span>':'')+'<span class="chip cx">'+esc(S.tanggal||today())+'</span>';
+  var pick=m?'<div class="sum-pick">'+mico(m.key)+'<div><small>Metode KB pilihan Ibu</small><strong>'+esc(m.full)+'</strong></div>'+(st?'<span class="chip '+st.cls+'">'+esc(st.txt)+'</span>':'')+'</div>':'<div class="sum-pick"><div><small>Metode KB pilihan Ibu</small><strong>Belum dipilih</strong><small>Pilih pada menu Konseling KB bagian B.</small></div></div>';
+  return '<div class="sum-hero">'+orn+'<div class="tt"><span class="eyebrow">Ringkasan konseling KB</span><h3>'+esc(S.nama||'Nama ibu belum diisi')+'</h3></div><div class="sum-chips">'+chips+'</div>'+pick+'</div>';
+}
+
+var isSavingCloud = false;
+function renderRingkas(){
+  $('#ringkas').innerHTML=summaryHero()+summaryHTML(summaryData());
+  var saveLabel = isSavingCloud ? 'Menyimpan ke NIFASIA...' : 'Simpan & Kirim Hasil ke NIFASIA';
+  var h='<button class="btn" type="button" data-act="save"'+(isSavingCloud?' disabled':'')+'>'+saveLabel+'</button><button class="btn ghost" type="button" data-act="copy">Salin ringkasan</button>';
+  $('#ringkas-act').innerHTML=h;
+}
+
+function renderRiwayat(){
+  var el=$('#riwayat');
+  if(!hist.length){el.innerHTML='<p class="sub">Belum ada riwayat pada sesi ini. Klik "Simpan & Kirim Hasil ke NIFASIA" di atas untuk menyimpan dan mengirim hasil pengisian.</p>';return}
+  el.innerHTML=hist.map(function(r){
+    var m=MBY[r.metode];
+    return '<details class="hi"><summary><span style="color:var(--fg);font-weight:700">'+esc(r.nama||'Tanpa nama')+'</span><span>'+esc(r.tgl||'')+' &middot; '+(m?esc(m.full):'Metode belum dipilih')+''+(r.synced?' &middot; ✓ Terkirim ke sistem':'')+'</span></summary><div class="in"><div class="sum" id="h-'+r.id+'">'+summaryHTML(r.secs)+'</div><div class="row-btns"><button class="btn ghost small" type="button" data-hcopy="'+r.id+'">Salin</button>'+
+     (pendDel===r.id?'<span>Hapus dari daftar sesi ini?</span><button class="btn danger small" type="button" data-hdel-yes="'+r.id+'">Ya, hapus</button><button class="btn ghost small" type="button" data-hdel-no="1">Batal</button>':'<button class="btn ghost small" type="button" data-hdel="'+r.id+'">Hapus</button>')+'</div></div></details>';
+  }).join('');
+}
+
+/* ---------- Simpan ke Cloud Firestore ---------- */
+async function submitToCloudAndHistory(){
+  if(isSavingCloud) return;
+  isSavingCloud = true;
+  renderRingkas();
+
+  var d = days();
+  var E = complete() ? evaluate() : null;
+  var m = MBY[S.pilihan];
+  var secs = summaryData();
+  var fullText = summaryText();
+  var nowMs = Date.now();
+  var tglStr = S.tanggal || today();
+
+  var mecSummary = {};
+  if(E){
+    METHODS.forEach(function(mt){
+      mecSummary[mt.key] = status(E, mt.key).txt;
+    });
+  }
+
+  var payload = {
+    createdAtMs: nowMs,
+    createdAtIso: new Date(nowMs).toISOString(),
+    submittedByUid: currentUser ? currentUser.uid : 'anon',
+    nama: S.nama || 'Tanpa nama',
+    usia: S.usia || '',
+    suami: S.suami || '',
+    usiaSuami: S.usiaSuami || '',
+    telp: S.telp || '',
+    pendidikan: lab('pend', S.pend) || '-',
+    pekerjaan: (S.kerja==='lain' ? (S.kerjaCat || 'Lainnya') : lab('kerja', S.kerja)) || '-',
+    alamat: S.alamat || '',
+    obstetri: obsText(),
+    usiaNifasHari: d,
+    usiaNifasTeks: fmtDur(d),
+    jenisSalin: lab('jenisSalin', S.jenisSalin) || '-',
+    kondisi: lab('kondisi', S.kondisi) || '-',
+    komplikasiHamil: labs('kHamil', S.kHamil) || '-',
+    komplikasiSalin: labs('kSalin', S.kSalin) || '-',
+    komplikasiNifas: labs('kNifas', S.kNifas) || '-',
+    keluhanSejak: S.kondisi==='keluhan' ? (lab('keluhanSejak', S.keluhanSejak) || '-') : '-',
+    obatDikonsumsi: S.obatAda==='ya' ? (S.obatNama || '-') : (S.obatAda==='tidak' ? 'Tidak' : '-'),
+    statusAsi: lab('asi', S.asi) || '-',
+    frekuensiAsi: lab('frek', S.frek) || '-',
+    produksiAsi: lab('produksi', S.produksi) || '-',
+    statusHaid: lab('haid', S.haid) || '-',
+    perluRujukan: E ? (E.alerts.length > 0) : false,
+    daftarPeringatan: E ? E.alerts : [],
+    faktorRisiko: (function(){var hs=healthScreen();return hs.miss?[]:hs.f.map(function(x){return x.t})})(),
+    hasilMec: mecSummary,
+    tujuanKb: lab('tujuan', S.tujuan) || '-',
+    rencanaJarak: lab('jarak', S.jarak) || '-',
+    metodeDipilihKey: S.pilihan || '',
+    metodeDipilihNama: m ? m.full : 'Belum dipilih',
+    namaBidan: S.bidan || '-',
+    tanggalKonseling: tglStr,
+    pertanyaanIbu: (S.qa||[]).map(function(x){return x.q}),
+    kesanIbu: S.kesan || '',
+    saranBidan: S.saran || '',
+    ringkasanSections: secs,
+    ringkasanTeks: fullText
+  };
+
+  var synced = false;
+  if(cloudReady && db && currentUser){
+    try{
+      var colRef = collection(db, 'artifacts', appId, 'public', 'data', 'konseling_submissions');
+      var docRef = await addDoc(colRef, payload);
+      payload._docId = docRef.id;
+      synced = true;
+    }catch(err){
+      console.error('Gagal menyimpan ke Firestore:', err);
+      synced = false;
+    }
+  }
+
+  if(!synced){
+    payload._docId = 'local-' + nowMs;
+    localSubmissions.unshift(payload);
+    lsSet('localSub',localSubmissions);
+  }
+
+  hist.unshift({
+    id: nowMs,
+    nama: S.nama,
+    tgl: tglStr,
+    metode: S.pilihan,
+    secs: secs,
+    text: fullText,
+    synced: synced
+  });
+  memSet('kbnifas.riwayat', hist);
+
+  isSavingCloud = false;
+  renderRingkas();
+  renderRiwayat();
+  if(synced){
+    toast('Hasil konseling berhasil disimpan dan terkirim ke sistem NIFASIA');
+  }else{
+    toast('Hasil konseling tersimpan pada sesi aktif');
+  }
+}
+
+/* ---------- Dashboard Pemilik ---------- */
+function getAllSubmissionsForOwner(){
+  /* Gabungkan data cloud dengan cadangan lokal yang belum tersinkron */
+  var seen = {};
+  var merged = [];
+  cloudSubmissions.forEach(function(item){
+    if(item._docId) seen[item._docId] = true;
+    merged.push(item);
+  });
+  localSubmissions.forEach(function(item){
+    if(!seen[item._docId]) merged.push(item);
+  });
+  merged.sort(function(a,b){return (b.createdAtMs || 0) - (a.createdAtMs || 0)});
+  return merged;
+}
+
+function renderOwnerDashboard(){
+  var gate = $('#owner-gate');
+  var panel = $('#owner-panel');
+  if(!ownerUnlocked){
+    gate.hidden = false;
+    panel.hidden = true;
+    return;
+  }
+  gate.hidden = true;
+  panel.hidden = false;
+
+  var all = getAllSubmissionsForOwner();
+  var syncInfo = $('#owner-sync-info');
+  if(syncInfo){
+    syncInfo.textContent = cloudReady
+      ? 'Sinkronisasi database terpusat NIFASIA aktif (' + all.length + ' total hasil pengisian).'
+      : 'Menampilkan data sesi aktif (' + all.length + ' pengisian).';
+  }
+
+  /* Populate filter dropdown sekali */
+  var selM = $('#own-metode');
+  if(selM && selM.options.length <= 1){
+    METHODS.forEach(function(m){
+      var opt = document.createElement('option');
+      opt.value = m.key;
+      opt.textContent = m.full;
+      selM.appendChild(opt);
+    });
+  }
+
+  /* Statistik Ringkas */
+  var total = all.length;
+  var rujukanCount = all.filter(function(x){return !!x.perluRujukan}).length;
+  var qsAll = allQuestions(), totalQ = qsAll.length, openQ = qsAll.filter(function(x){return !x.jawaban}).length;
+  var methodCounts = {};
+  all.forEach(function(x){
+    var k = x.metodeDipilihNama || 'Belum dipilih';
+    methodCounts[k] = (methodCounts[k] || 0) + 1;
+  });
+  var topMethod = '-';
+  var topMax = 0;
+  Object.keys(methodCounts).forEach(function(k){
+    if(methodCounts[k] > topMax){ topMax = methodCounts[k]; topMethod = k; }
+  });
+
+  $('#owner-stats').innerHTML =
+    '<div class="stat-box"><span class="num">'+total+'</span><span class="lbl">Total Pengisian Masuk</span></div>'+
+    '<div class="stat-box"><span class="num">'+rujukanCount+'</span><span class="lbl">Perlu Penilaian Dokter</span></div>'+
+    '<div class="stat-box"><span class="num">'+totalQ+'</span><span class="lbl">Total Pertanyaan dari Ibu</span></div>'+
+    '<div class="stat-box"><span class="num">'+openQ+'</span><span class="lbl">Belum Dijawab</span></div>'+
+    '<div class="stat-box"><span class="num" style="font-size:1.15rem;padding-top:.35rem">'+esc(topMethod)+'</span><span class="lbl">Metode Paling Banyak Dipilih</span></div>';
+
+  /* Distribusi Metode KB */
+  var distEl = $('#owner-dist');
+  if(total > 0){
+    var bars = Object.keys(methodCounts).sort(function(a,b){return methodCounts[b]-methodCounts[a]}).map(function(k){
+      var pct = Math.round((methodCounts[k] / total) * 100);
+      return '<div class="bar-row"><div class="bar-lbl"><span>'+esc(k)+'</span><span>'+methodCounts[k]+' ibu ('+pct+'%)</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div></div>';
+    }).join('');
+    distEl.innerHTML = '<div class="box"><h3>Distribusi Pilihan Metode KB</h3>'+bars+'</div>';
+  } else {
+    distEl.innerHTML = '';
+  }
+
+  renderOwnerQA();
+
+  /* Filter & Pencarian */
+  var q = ($('#own-q')?.value || '').toLowerCase().trim();
+  var fMet = $('#own-metode')?.value || '';
+  var fStat = $('#own-status')?.value || '';
+
+  var filtered = all.filter(function(item){
+    if(q){
+      var hay = [item.nama, item.suami, item.telp, item.alamat, item.pekerjaan, item.namaBidan, item.metodeDipilihNama, item.kesanIbu, item.saranBidan].join(' ').toLowerCase();
+      if(hay.indexOf(q) === -1) return false;
+    }
+    if(fMet && item.metodeDipilihKey !== fMet) return false;
+    if(fStat === 'rujuk' && !item.perluRujukan) return false;
+    if(fStat === 'aman' && item.perluRujukan) return false;
+    return true;
+  });
+
+  $('#own-count').textContent = filtered.length;
+  var listEl = $('#owner-list');
+  if(!filtered.length){
+    listEl.innerHTML = '<p class="sub">Tidak ada data pengisian yang sesuai dengan filter saat ini.</p>';
+    return;
+  }
+
+  listEl.innerHTML = filtered.map(function(item){
+    var waktu = item.createdAtMs ? new Date(item.createdAtMs).toLocaleString('id-ID', {dateStyle:'medium', timeStyle:'short'}) : (item.tanggalKonseling || '-');
+    var badgeRujuk = item.perluRujukan
+      ? '<span class="chip c4">Perlu Penilaian Dokter</span>'
+      : '<span class="chip c1">Skrining Terkendali</span>';
+    var skorTxt = (item.pertanyaanIbu||[]).length ? ' &middot; '+item.pertanyaanIbu.length+' pertanyaan' : '';
+    var docId = esc(item._docId || '');
+
+    return '<details class="hi">'+
+      '<summary>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:.45rem;align-items:center">'+
+          '<strong style="color:var(--fg)">'+esc(item.nama || 'Tanpa nama')+'</strong>'+
+          badgeRujuk+
+        '</div>'+
+        '<span>'+esc(waktu)+' &middot; <strong>'+esc(item.metodeDipilihNama || 'Belum dipilih')+'</strong>'+skorTxt+'</span>'+
+      '</summary>'+
+      '<div class="in">'+
+        '<div class="facts" style="background:var(--surface2);padding:.85rem;border-radius:8px">'+
+          '<div class="fact"><p class="sub">No. Telepon</p><h3>'+esc(item.telp||'-')+'</h3></div>'+
+          '<div class="fact"><p class="sub">Usia Nifas & Persalinan</p><h3>'+esc(item.usiaNifasTeks||'-')+' ('+esc(item.jenisSalin||'-')+')</h3></div>'+
+          '<div class="fact"><p class="sub">Status ASI & Haid</p><h3>'+esc(item.statusAsi||'-')+' &middot; '+esc(item.statusHaid||'-')+'</h3></div>'+
+          '<div class="fact"><p class="sub">Bidan / Petugas</p><h3>'+esc(item.namaBidan||'-')+'</h3></div>'+
+          '<div class="fact"><p class="sub">Kesan dan Pesan untuk Bidan</p><h3>'+((item.kesanIbu||item.saranBidan)?'Sudah diisi':'Belum diisi')+'</h3></div>'+
+        '</div>'+
+        '<div class="sum" id="own-sum-'+docId+'">'+summaryHTML(item.ringkasanSections || [])+'</div>'+
+        '<div class="row-btns">'+
+          '<button class="btn ghost small" type="button" data-own-copy="'+docId+'">Salin Detail</button>'+
+          (pendCloudDel === item._docId
+            ? '<span>Hapus data ini dari sistem?</span><button class="btn danger small" type="button" data-own-del-yes="'+docId+'">Ya, hapus</button><button class="btn ghost small" type="button" data-own-del-no="1">Batal</button>'
+            : '<button class="btn ghost small" type="button" data-own-del="'+docId+'">Hapus Data</button>')+
+        '</div>'+
+      '</div>'+
+    '</details>';
+  }).join('');
+}
+
+function exportOwnerCSV(){
+  var all = getAllSubmissionsForOwner();
+  if(!all.length){
+    toast('Belum ada data pengisian untuk diunduh.');
+    return;
+  }
+  var headers = [
+    'Waktu Input','Tanggal Konseling','Nama Ibu','Usia Ibu','No. Telepon','Pendidikan Terakhir','Pekerjaan','Alamat','Nama Suami','Riwayat Obstetri',
+    'Usia Nifas','Jenis Persalinan','Komplikasi Kehamilan','Komplikasi Persalinan','Komplikasi Nifas','Keluhan Sejak','Obat yang Dikonsumsi','Status ASI','Frekuensi Menyusui','Status Haid',
+    'Perlu Penilaian Dokter','Peringatan Medis','Faktor Risiko Kesehatan','Metode KB Dipilih',
+    'Nama Bidan','Pertanyaan Ibu','Kesan Ibu','Pesan untuk Bidan'
+  ];
+  function csvCell(val){
+    var s = String(val == null ? '' : val).replace(/"/g, '""');
+    return '"' + s + '"';
+  }
+  var rows = [headers.map(csvCell).join(',')];
+  all.forEach(function(x){
+    var waktu = x.createdAtMs ? new Date(x.createdAtMs).toLocaleString('id-ID') : '';
+    var row = [
+      waktu, x.tanggalKonseling, x.nama, x.usia, (x.telp ? '="' + x.telp + '"' : ''), x.pendidikan, x.pekerjaan, x.alamat, x.suami, x.obstetri,
+      x.usiaNifasTeks, x.jenisSalin, x.komplikasiHamil, x.komplikasiSalin, x.komplikasiNifas, x.keluhanSejak, x.obatDikonsumsi, x.statusAsi, x.frekuensiAsi, x.statusHaid,
+      x.perluRujukan ? 'Ya' : 'Tidak', (x.daftarPeringatan || []).join('; '), (x.faktorRisiko || []).join('; '),
+      x.metodeDipilihNama,
+      x.namaBidan, (x.pertanyaanIbu || []).join(' | '),
+      x.kesanIbu, x.saranBidan
+    ];
+    rows.push(row.map(csvCell).join(','));
+  });
+  var csvContent = '\uFEFF' + rows.join('\r\n');
+  var blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'laporan-nifasia-' + today() + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('File CSV berhasil diunduh.');
+}
+
+async function deleteSubmissionById(docId){
+  if(!docId) return;
+  if(docId.indexOf('local-') === 0){
+    localSubmissions = localSubmissions.filter(function(x){return x._docId !== docId});
+    lsSet('localSub',localSubmissions);
+    pendCloudDel = null;
+    renderOwnerDashboard();
+    toast('Data sesi dihapus.');
+    return;
+  }
+  if(cloudReady && db){
+    try{
+      await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'konseling_submissions', docId));
+      pendCloudDel = null;
+      toast('Data berhasil dihapus dari database NIFASIA.');
+    }catch(err){
+      console.error('Gagal menghapus dokumen:', err);
+      toast('Gagal menghapus data dari server.');
+    }
+  }
+}
+
+/* ---------- forms ---------- */
+var NUM='min="0" max="20" inputmode="numeric"';
+var FORMS={
+ pengkajian:[
+  {t:'1. Identitas ibu dan suami',f:[
+   {type:'grid',f:[{k:'nama',type:'text',l:'Nama ibu',hint:'Nama lengkap Ibu.'},{k:'usia',type:'number',l:'Usia ibu (tahun)',attr:'min="12" max="60" inputmode="numeric"',hint:'Isi angka, misalnya 28.'},{k:'suami',type:'text',l:'Nama suami',hint:'Nama suami atau pendamping.'},{k:'usiaSuami',type:'number',l:'Usia suami (tahun)',attr:'min="15" max="90" inputmode="numeric"',hint:'Isi angka.'}]}]},
+  {t:'2. Riwayat kehamilan dan persalinan',f:[
+   {type:'grid',f:[{k:'P',type:'number',l:'Jumlah persalinan (Para)',attr:NUM,hint:'Termasuk persalinan terakhir.'},{k:'anak',type:'number',l:'Jumlah anak hidup',attr:NUM,hint:'Anak yang masih hidup.'}]},
+   {k:'abortus',type:'radio',l:'Riwayat keguguran (abortus)',hint:'Pilih satu.'},
+   {k:'A',type:'number',l:'Jumlah keguguran',attr:'min="1" max="20" inputmode="numeric"',cond:'abortus:pernah',hint:'Isi jumlah kejadian.'},
+   {k:'kontLalu',type:'multi',l:'Kontrasepsi yang pernah dipakai',hint:'Boleh pilih lebih dari satu.'},
+   {k:'kontLaluCat',type:'text',l:'Catatan kontrasepsi sebelumnya (opsional)',ph:'Alasan berhenti atau keluhan',hint:'Boleh dikosongkan.'}]},
+  {t:'3. Kondisi nifas saat ini',f:[
+   {type:'dur'},
+   {type:'info',h:'<strong>Tiga masa.</strong> <b>Kehamilan</b>: sebelum bayi lahir. <b>Persalinan</b>: saat melahirkan sampai plasenta lahir. <b>Nifas</b>: setelah plasenta lahir sampai sekitar 42 hari.'},
+   {k:'jenisSalin',type:'radio',l:'Jenis persalinan',hint:'Pilih cara bayi lahir.'},
+   {k:'kHamil',type:'multi',l:'Komplikasi pada masa kehamilan',hint:'Boleh pilih lebih dari satu.'},
+   {k:'kSalin',type:'multi',l:'Komplikasi pada masa persalinan',hint:'Boleh pilih lebih dari satu.'},
+   {k:'kNifas',type:'multi',l:'Komplikasi pada masa nifas (setelah melahirkan)',hint:'Boleh pilih lebih dari satu.'},
+   {k:'kondisi',type:'radio',l:'Kondisi kesehatan ibu saat ini',hint:'Pilih kondisi Ibu hari ini.'},
+   {k:'kondisiCat',type:'text',l:'Keluhan yang dirasakan',ph:'Misalnya nyeri jahitan, demam, perdarahan',cond:'kondisi:keluhan',hint:'Tulis singkat.'},
+   {k:'keluhanSejak',type:'radio',l:'Keluhan ini dirasakan sejak masa apa?',cond:'kondisi:keluhan',hint:'Pilih satu.'}]},
+  {t:'4. Status menyusui',f:[
+   {k:'asi',type:'radio',l:'Pemberian ASI',hint:'Wajib. Pilih yang paling sesuai.'},
+   {k:'frek',type:'radio',l:'Frekuensi menyusui',cond:'asi:eksklusif,sebagian',hint:'Perkiraan dalam sehari semalam.'},
+   {k:'produksi',type:'radio',l:'Produksi ASI',cond:'asi:eksklusif,sebagian',hint:'Menurut perasaan Ibu.'},
+   {k:'haid',type:'radio',l:'Haid setelah persalinan',hint:'Haid pertama setelah melahirkan.'}]},
+  {t:'5. Riwayat penyakit, obat, dan kebiasaan',f:[
+   {type:'info',h:'Pilih satu jawaban di tiap pertanyaan. Bila tidak ada riwayat, pilih <b>Tidak ada</b>.'},
+   {k:'hipertensi',type:'radio',l:'Hipertensi',hint:'Tekanan darah tinggi. Pilih sesuai pengukuran terakhir.'},
+   {k:'diabetes',type:'radio',l:'Diabetes',hint:'Kencing manis.'},
+   {k:'jantung',type:'radio',l:'Penyakit jantung',hint:'Pilih satu.'},
+   {k:'stroke',type:'radio',l:'Stroke',hint:'Pilih satu.'},
+   {k:'trombosis',type:'radio',l:'Trombosis (bekuan darah di tungkai atau paru)',hint:'Pilih satu.'},
+   {k:'kankerPayudara',type:'radio',l:'Kanker payudara',hint:'Pilih satu.'},
+   {k:'hati',type:'radio',l:'Penyakit hati',hint:'Pilih satu.'},
+   {k:'migrain',type:'radio',l:'Migrain',hint:'Aura: gangguan penglihatan sebelum sakit kepala.'},
+   {k:'rokok',type:'radio',l:'Kebiasaan merokok',hint:'Perkiraan batang per hari.'},
+   {k:'perdarahan',type:'radio',l:'Perdarahan vagina yang tidak biasa',hint:'Di luar darah nifas atau haid.'},
+   {k:'obatAda',type:'radio',l:'Apakah Ibu sedang mengonsumsi obat?',hint:'Pilih satu.'},
+   {k:'obatNama',type:'text',l:'Nama obat yang dikonsumsi',ph:'Misalnya amlodipin 5 mg',cond:'obatAda:ya',hint:'Pisahkan dengan koma bila lebih dari satu.'},
+   {k:'obat',type:'multi',l:'Apakah termasuk obat berikut?',cond:'obatAda:ya',hint:'Centang bila ada yang sesuai.'}]}
+ ],
+ pref:[{t:'',f:[
+   {k:'tujuan',type:'radio',l:'Tujuan menggunakan KB',hint:'Pilih satu.'},{k:'jarak',type:'radio',l:'Rencana jarak kehamilan berikutnya',hint:'Pilih satu.'},
+   {k:'minat',type:'multi',l:'Metode KB yang diminati',hint:'Boleh pilih lebih dari satu.'},{k:'hormon',type:'radio',l:'Preferensi jenis metode',hint:'Hormonal memakai hormon, nonhormonal tidak.'},{k:'cemas',type:'multi',l:'Hal yang dikhawatirkan',hint:'Boleh pilih lebih dari satu.'},{k:'pasangan',type:'radio',l:'Dukungan suami',hint:'Pilih satu.'}]}]
+};
+function optsFor(k){return k==='minat'?METHODS.map(function(m){return [m.key,m.full]}):OPT[k]}
+var COLK=['hipertensi','diabetes','kankerPayudara','trombosis','hati','asi','frek','obat','kHamil','kSalin','kNifas','keluhanSejak','abortus'];
+function fld(f){var r=fld0(f);return f.cond?'<div data-cond="'+f.cond+'">'+r+'</div>':r}
+function fld0(f){
+  var id='f-'+f.k,hint=f.hint?'<small class="hint">'+f.hint+'</small>':'';
+  if(f.type==='info')return '<div class="notice">'+f.h+'</div>';
+  if(f.type==='grid')return '<div class="fgrid">'+f.f.map(fld).join('')+'</div>';
+  if(f.type==='dur')return '<div class="fld"><label for="f-lamaN">Lama sejak persalinan</label><div class="dur"><input id="f-lamaN" type="number" min="0" max="400" inputmode="numeric" data-k="lamaN" placeholder="Misalnya 6"><select id="f-lamaU" data-k="lamaU" aria-label="Satuan waktu"><option value="hari">hari</option><option value="minggu">minggu</option><option value="bulan">bulan</option></select></div><small class="hint">Wajib. Hitung sejak bayi lahir sampai hari ini.</small></div>';
+  if(f.type==='text'||f.type==='number'||f.type==='date')return '<div class="fld"><label for="'+id+'">'+f.l+'</label><input id="'+id+'" type="'+f.type+'" '+(f.attr||'')+' data-k="'+f.k+'" autocomplete="off"'+(f.ph?' placeholder="'+esc(f.ph)+'"':'')+'>'+hint+'</div>';
+  if(f.type==='area')return '<div class="fld"><label for="'+id+'">'+f.l+'</label><textarea id="'+id+'" data-k="'+f.k+'"'+(f.ph?' placeholder="'+esc(f.ph)+'"':'')+'></textarea></div>';
+  var multi=f.type==='multi';
+  return '<fieldset class="fld"><legend>'+f.l+'</legend>'+hint+'<div class="opts'+(COLK.indexOf(f.k)>-1?' col':'')+'">'+optsFor(f.k).map(function(o){
+    return '<label class="opt"><input type="'+(multi?'checkbox':'radio')+'" name="'+f.k+'" data-k="'+f.k+'"'+(multi?' data-multi':'')+' value="'+esc(o[0])+'"><span>'+esc(o[1])+'</span></label>';
+  }).join('')+'</div></fieldset>';
+}
+function buildForm(id,groups){
+  $(id).innerHTML=groups.map(function(g){
+    return '<div class="card">'+(g.t?'<h2>'+g.t+'</h2>':'')+g.f.map(fld).join('')+'</div>';
+  }).join('');
+}
+function fillForm(){
+  $$('[data-k]').forEach(function(t){
+    var k=t.dataset.k,v=S[k];
+    if(t.type==='checkbox'&&t.dataset.multi!==undefined)t.checked=(v||[]).indexOf(t.value)>-1;
+    else if(t.type==='checkbox')t.checked=!!v;
+    else if(t.type==='radio')t.checked=(v===t.value);
+    else t.value=(v==null?'':v);
+  });
+  var pb=$('#f-pilihan');
+  if(pb){pb.innerHTML='<option value="">Belum dipilih</option>'+METHODS.map(function(m){return '<option value="'+m.key+'">'+esc(m.full)+'</option>'}).join('');pb.value=S.pilihan||''}
+  updBayi();updCond();
+}
+function updCond(){$$('[data-cond]').forEach(function(el){var p=el.dataset.cond.split(':');el.hidden=p[1].split(',').indexOf(S[p[0]]||'')<0})}
+function updBayi(){var o=$('#usiaBayi');if(o)o.textContent=days()==null?'Isi lama sejak persalinan':fmtDur(days())}
+
+function setVal(t){
+  var k=t.dataset.k;
+  if(t.type==='checkbox'&&t.dataset.multi!==undefined){
+    var set=(S[k]||[]).slice(),i=set.indexOf(t.value);
+    if(t.checked){
+      if(t.value==='none'){set=['none'];$$('input[data-k="'+k+'"]').forEach(function(x){if(x.value!=='none')x.checked=false})}
+      else{set=set.filter(function(x){return x!=='none'});set.push(t.value);var nb=$('input[data-k="'+k+'"][value="none"]');if(nb)nb.checked=false}
+    }else if(i>-1)set.splice(i,1);
+    S[k]=set;
+  }else if(t.type==='checkbox')S[k]=t.checked;
+  else S[k]=t.value;
+  if(k==='abortus'&&S.abortus!=='pernah'){S.A='';var ai=$('#f-A');if(ai)ai.value=''}
+  if(k==='obatAda'&&S.obatAda!=='ya'){S.obat=[];S.obatNama='';var oi=$('#f-obatNama');if(oi)oi.value='';$$('input[data-k="obat"]').forEach(function(x){x.checked=false})}
+  if(k==='kondisi'&&S.kondisi!=='keluhan'){S.keluhanSejak='';S.kondisiCat='';var ci=$('#f-kondisiCat');if(ci)ci.value='';$$('input[name="keluhanSejak"]').forEach(function(x){x.checked=false})}
+  save();updCond();updBayi();refreshView();
+}
+
+
+/* ---------- registrasi ibu (diisi satu kali, dapat dilihat dan diubah kembali) ---------- */
+function regSel(k,label){return '<div class="fld"><label for="f-'+k+'">'+label+'</label><select id="f-'+k+'" data-k="'+k+'"><option value="">Pilih salah satu</option>'+OPT[k].map(function(o){return '<option value="'+o[0]+'">'+esc(o[1])+'</option>'}).join('')+'</select></div>'}
+function regKerjaTxt(){return (S.kerja==='lain'?(S.kerjaCat||'Lainnya'):lab('kerja',S.kerja))||'-'}
+function renderReg(){
+  var box=$('#reg-box'),body=$('#pengkajian-body');if(!box||!body)return;
+  body.hidden=!S.regDone||regEdit;
+  if(S.regDone&&!regEdit){
+    function kv(k,v){return '<div class="kv"><span class="k">'+k+'</span><span class="v">'+esc(v||'-')+'</span></div>'}
+    box.innerHTML='<div class="card"><div class="row-btns" style="justify-content:space-between"><div><span class="eyebrow">Registrasi</span><h2>Data Registrasi Ibu</h2></div><span class="chip c1">Sudah tersimpan</span></div>'+
+      '<p class="sub">Data ini tersimpan di perangkat Ibu'+(S.regAt?' (terakhir diperbarui '+esc(fmtTime(S.regAt))+')':'')+'. Ibu tidak perlu mengisinya lagi, tetapi boleh mengubahnya bila ada perubahan.</p>'+
+      '<div class="reg-sum">'+kv('No. telepon',S.telp)+kv('Pendidikan terakhir',lab('pend',S.pend))+kv('Pekerjaan',regKerjaTxt())+kv('Alamat',S.alamat)+'</div>'+
+      '<div class="row-btns"><button class="btn ghost small" type="button" data-act="regedit">Ubah data registrasi</button></div></div>';
+    var rb=$('#refill-box');
+    if(rb)rb.innerHTML=pendRefill
+      ? '<span><strong>Kosongkan isian pengkajian dan isi ulang dari awal?</strong> Data registrasi serta nama dan usia ibu dan suami tetap tersimpan.</span><span class="row-btns"><button class="btn danger small" type="button" data-act="refillyes">Ya, isi ulang</button><button class="btn ghost small" type="button" data-act="refillno">Batal</button></span>'
+      : '<span>Ingin mengisi pengkajian dari awal lagi? Data registrasi tidak ikut terhapus.</span><button class="btn ghost small" type="button" data-act="refill">Isi ulang pengkajian</button>';
+  }else{
+    box.innerHTML='<div class="card"><div><span class="eyebrow">Registrasi &middot; diisi satu kali</span><h2>'+(S.regDone?'Ubah Data Registrasi':'Registrasi Ibu')+'</h2></div>'+
+      '<p class="sub">Isi data berikut satu kali saja. Setelah disimpan, Ibu dapat membukanya kembali kapan saja dan mengubahnya bila perlu.</p>'+
+      '<div class="fgrid"><div class="fld"><label for="f-telp">No. telepon / WhatsApp</label><input id="f-telp" type="text" inputmode="tel" autocomplete="tel" data-k="telp" placeholder="Misalnya 081234567890"><small class="hint">Hanya angka. Boleh diawali tanda +.</small></div>'+
+      regSel('pend','Pendidikan terakhir')+'</div>'+
+      '<div class="fgrid">'+regSel('kerja','Pekerjaan')+'<div data-cond="kerja:lain"><div class="fld"><label for="f-kerjaCat">Tuliskan pekerjaan Ibu</label><input id="f-kerjaCat" type="text" data-k="kerjaCat" autocomplete="off"></div></div></div>'+
+      '<div class="fld"><label for="f-alamat">Alamat</label><textarea id="f-alamat" data-k="alamat" autocomplete="street-address" placeholder="Jalan, RT/RW, kelurahan, kecamatan, kota"></textarea><small class="hint">Alamat tempat tinggal Ibu saat ini.</small></div>'+
+      '<p id="reg-err" class="alert" role="alert" hidden></p>'+
+      '<div class="row-btns"><button class="btn" type="button" data-act="regsave">Simpan Registrasi</button>'+(S.regDone?'<button class="btn ghost" type="button" data-act="regcancel">Batal</button>':'')+'</div></div>';
+  }
+  fillForm();
+}
+function saveReg(){
+  var err=$('#reg-err'),tp=(S.telp||'').replace(/[\s\-().]/g,''),msg='',f='';
+  if(!/^\+?\d{9,15}$/.test(tp)){msg='No. telepon belum benar. Isi 9 sampai 15 angka.';f='f-telp'}
+  else if(!S.pend){msg='Pilih pendidikan terakhir Ibu.';f='f-pend'}
+  else if(!S.kerja){msg='Pilih pekerjaan Ibu.';f='f-kerja'}
+  else if(S.kerja==='lain'&&!(S.kerjaCat||'').trim()){msg='Tuliskan pekerjaan Ibu.';f='f-kerjaCat'}
+  else if((S.alamat||'').trim().length<5){msg='Alamat belum diisi.';f='f-alamat'}
+  if(msg){err.textContent=msg;err.hidden=false;var t=$('#'+f);if(t)t.focus();return}
+  S.telp=tp;S.alamat=S.alamat.trim();S.regDone=true;S.regAt=Date.now();regEdit=false;regBak=null;
+  save();renderReg();window.scrollTo(0,0);toast('Registrasi tersimpan. Silakan lanjut mengisi pengkajian.');
+}
+
+/* ---------- routing ---------- */
+var PAGES=['beranda','pengkajian','metode','skrining','konseling','evaluasi','pemilik'];
+function refreshView(){
+  if(cur==='metode')renderMetode();
+  else if(cur==='skrining')renderSkrining();
+  else if(cur==='konseling'){renderRek()}
+  else if(cur==='evaluasi'){renderRingkas()}
+  else if(cur==='pemilik'){renderOwnerDashboard()}
+}
+function route(scroll){
+  var h=(location.hash||'').replace('#','');
+  cur=PAGES.indexOf(h)>-1?h:'beranda';
+  PAGES.forEach(function(p){$('#p-'+p).hidden=(p!==cur)});
+  $$('#nav a').forEach(function(a){if(a.dataset.p===cur){a.setAttribute('aria-current','page');try{a.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}}else a.removeAttribute('aria-current')});
+  if(cur==='evaluasi'){renderQA();renderRiwayat()}
+  if(cur==='pengkajian')renderReg();
+  refreshView();
+  if(scroll!==false)window.scrollTo(0,0);
+}
+
+/* ---------- events ---------- */
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='own-q'){renderOwnerDashboard();return}
+  if(t.dataset&&t.dataset.ans!==undefined){qDraft[t.dataset.ans]=t.value;return}
+  if(t.dataset&&t.dataset.k!==undefined&&(t.type==='text'||t.type==='number'||t.tagName==='TEXTAREA'||t.type==='date'))setVal(t);
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.id==='own-metode'||t.id==='own-status'){renderOwnerDashboard();return}
+  if(t.dataset&&t.dataset.k!==undefined&&!(t.type==='text'||t.type==='number'||t.tagName==='TEXTAREA'))setVal(t);
+});
+function hasilPengkajian(){
+  if(!complete()){toast('Lengkapi dulu lama sejak persalinan dan status ASI agar hasil dapat dihitung.');var t=days()===null?$('#f-lamaN'):$('input[name="asi"]');if(t)t.focus();return}
+  toast('Pengkajian selesai. Lihat hasil skrining kelayakan metode KB.');location.hash='#skrining';
+}
+function sample(){
+  var rg={};['regDone','regAt','telp','pend','kerja','kerjaCat','alamat'].forEach(function(k){rg[k]=S[k]});
+  S=Object.assign(defaults(),{nama:'Contoh (Ibu A)',usia:'28',suami:'Contoh (Bapak A)',usiaSuami:'31',P:'2',abortus:'tidak',A:'',anak:'2',kontLalu:['suntik'],kontLaluCat:'Suntik 3 bulan, berhenti saat hamil',
+   lamaN:'10',lamaU:'minggu',jenisSalin:'spontan',kondisi:'baik',kHamil:['none'],kSalin:['none'],kNifas:['none'],asi:'eksklusif',frek:'sering',produksi:'cukup',haid:'belum',
+   hipertensi:'terkontrol',diabetes:'tidak',jantung:'tidak',stroke:'tidak',trombosis:'tidak',kankerPayudara:'tidak',hati:'tidak',migrain:'tidak',rokok:'tidak',perdarahan:'tidak',obatAda:'ya',obatNama:'Amlodipin 5 mg',obat:['none'],tujuan:'menjarangkan',jarak:'3-5',minat:['imp','aud'],hormon:'bebas',cemas:['haid'],pasangan:'dukung'});
+  if(rg.regDone)Object.assign(S,rg);else Object.assign(S,{regDone:true,regAt:Date.now(),telp:'081234567890',pend:'sma',kerja:'irt',kerjaCat:'',alamat:'Jl. Contoh No. 1, Surabaya'});
+  regEdit=false;save();fillForm();renderReg();route(false);toast('Contoh data dimuat. Ganti dengan data ibu yang sebenarnya.');
+}
+
+function tryOwnerLogin(){
+  var inp = $('#owner-pin-input');
+  var err = $('#owner-login-err');
+  var val = (inp?.value || '').trim();
+  if(val.toUpperCase() === ownerPin){
+    ownerUnlocked = true;
+    err.hidden = true;
+    inp.value = '';
+    renderOwnerDashboard();
+    toast('Selamat datang di Dashboard Pemilik NIFASIA.');
+  } else {
+    err.textContent = 'Sandi tidak sesuai. Silakan coba lagi.';
+    err.hidden = false;
+  }
+}
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  var a=b.dataset.act;
+  if(b.id==='owner-login-btn'){tryOwnerLogin();return}
+  if(b.id==='btn-owner-logout'){ownerUnlocked=false;renderOwnerDashboard();toast('Dashboard Pemilik dikunci.');return}
+  if(b.id==='btn-export-csv'){exportOwnerCSV();return}
+  if(b.id==='btn-copy-all-report'){
+    var all = getAllSubmissionsForOwner();
+    if(!all.length){toast('Belum ada data untuk disalin.');return}
+    var txt = 'REKAPITULASI PENGISIAN NIFASIA ('+all.length+' DATA)\n\n' + all.map(function(x,idx){
+      return (idx+1)+'. '+x.nama+' | Tgl: '+x.tanggalKonseling+' | Nifas: '+x.usiaNifasTeks+' | ASI: '+x.statusAsi+' | Metode: '+x.metodeDipilihNama+' | Rujukan: '+(x.perluRujukan?'Ya':'Tidak');
+    }).join('\n');
+    copyText(txt);
+    return;
+  }
+  if(b.dataset.ansSend){answerQuestion(b.dataset.ansSend);return}
+  if(b.dataset.ownCopy){
+    var target = getAllSubmissionsForOwner().filter(function(x){return x._docId === b.dataset.ownCopy})[0];
+    if(target) copyText(target.ringkasanTeks || '', $('#own-sum-'+b.dataset.ownCopy));
+    return;
+  }
+  if(b.dataset.ownDel){pendCloudDel=b.dataset.ownDel;renderOwnerDashboard();return}
+  if(b.dataset.ownDelNo){pendCloudDel=null;renderOwnerDashboard();return}
+  if(b.dataset.ownDelYes){deleteSubmissionById(b.dataset.ownDelYes);return}
+
+  if(b.dataset.m){curM=b.dataset.m;renderMetode();return}
+  if(b.dataset.pick){if(!complete()){toast('Lengkapi dulu pengkajian ibu (lama sejak persalinan dan status ASI) sebelum memilih metode.');return}S.pilihan=b.dataset.pick;save();var pb=$('#f-pilihan');if(pb)pb.value=S.pilihan;toast('Metode dipilih: '+MBY[S.pilihan].full);refreshView();return}
+  if(b.dataset.hcopy){var r=hist.filter(function(x){return String(x.id)===b.dataset.hcopy})[0];if(r)copyText(r.text,$('#h-'+r.id));return}
+  if(b.dataset.hdel){pendDel=parseInt(b.dataset.hdel,10);renderRiwayat();return}
+  if(b.dataset.hdelNo){pendDel=null;renderRiwayat();return}
+  if(b.dataset.hdelYes){hist=hist.filter(function(x){return String(x.id)!==b.dataset.hdelYes});pendDel=null;memSet('kbnifas.riwayat',hist);renderRiwayat();toast('Riwayat sesi dihapus');return}
+  if(a==='regsave')saveReg();
+  else if(a==='regedit'){regBak={};REGK.forEach(function(k){regBak[k]=S[k]});regEdit=true;renderReg()}
+  else if(a==='regcancel'){if(regBak)REGK.forEach(function(k){S[k]=regBak[k]});regBak=null;regEdit=false;save();renderReg()}
+  else if(a==='refill'){pendRefill=true;renderReg()}
+  else if(a==='refillno'){pendRefill=false;renderReg()}
+  else if(a==='refillyes'){var keep={};REGK.concat(['regDone','regAt','nama','usia','suami','usiaSuami']).forEach(function(k){keep[k]=S[k]});S=Object.assign(defaults(),keep);S.tanggal=today();pendRefill=false;save();renderReg();window.scrollTo(0,0);toast('Isian pengkajian dikosongkan. Silakan isi ulang.')}
+  else if(a==='hasil')hasilPengkajian();
+  else if(a==='sample')sample();
+  else if(a==='recclose'){recClosed=recTop;renderRek()}
+  else if(a==='recopen'){recClosed='';renderRek()}
+  else if(a==='qaask')askQA();
+  else if(a==='copy')copyText(summaryText(),$('#ringkas'));
+  else if(a==='save')submitToCloudAndHistory();
+});
+
+$('#owner-pin-input')?.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){e.preventDefault();tryOwnerLogin();}
+});
+
+$('#fs').addEventListener('click',function(){
+  var r=document.documentElement,v=((parseInt(r.getAttribute('data-fs')||'0',10))+1)%3;
+  r.setAttribute('data-fs',String(v));memSet('kbnifas.fs',v);toast('Ukuran huruf: '+['normal','besar','sangat besar'][v]);
+});
+window.addEventListener('hashchange',function(){route(true)});
+
+/* ---------- init ---------- */
+buildForm('#form-pengkajian',FORMS.pengkajian);
+buildForm('#form-pref',FORMS.pref);
+renderReg();
+$('#hero-art').innerHTML=HERO;
+$$('#p-beranda .fact').forEach(function(f,i){if(FI[i])f.insertAdjacentHTML('afterbegin','<span class="ico">'+FI[i]+'</span>')});
+$$('.page-head').forEach(function(h){var k=h.parentNode.id.replace('p-','');if(PH[k])h.insertAdjacentHTML('beforeend','<div class="ph-art" aria-hidden="true">'+PH[k]+'</div>')});
+fillForm();
+route(false);
+initCloud();
+})();
+</script>
+</body>
+</html>
